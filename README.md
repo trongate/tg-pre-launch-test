@@ -1,1 +1,1 @@
-README files are bullschitt.
+Agile is bullschitt.
