@@ -1,1 +1,2 @@
+* make sure we have the absolute most up to date framework here.
 * test uploading of PNG with clear bg.  
