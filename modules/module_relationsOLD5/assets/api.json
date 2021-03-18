@@ -1,0 +1,46 @@
+{
+  "Create Association": {
+    "url_segments": "module_relations/submit",
+    "request_type": "POST",
+    "description": "Create new module association",
+    "enableParams": true,
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
+  },
+  "Fetch Associated Records": {
+    "url_segments": "module_relations/fetch_associated_records",
+    "request_type": "POST",
+    "description": "Fetch associated records.",
+    "enableParams": true,
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
+  },
+  "Fetch Available Options": {
+    "url_segments": "module_relations/fetch_available_options",
+    "request_type": "POST",
+    "description": "Fetch associated records.",
+    "enableParams": true,
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
+  },
+  "Disassociate": {
+    "url_segments": "module_relations/disassociate",
+    "request_type": "POST",
+    "description": "Remove disassociation.",
+    "enableParams": true,
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
+  }
+}

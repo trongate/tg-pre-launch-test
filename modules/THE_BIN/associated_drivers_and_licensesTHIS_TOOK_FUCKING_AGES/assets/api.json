@@ -1,0 +1,61 @@
+{
+   "Fetch":{  
+      "url_segments":"associated_drivers_and_licenses/fetch/{update_id}/{calling_module_name}",
+      "request_type":"GET",
+      "description":"Fetch associated records",
+      "enableParams": false,
+      "required_fields": [
+        {
+           "name": "update_id",
+           "label": "update_id" 
+        },
+        {
+           "name": "calling_module_name",
+           "label": "Calling Module Name" 
+        }
+      ],
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   },
+   "Options":{  
+      "url_segments":"associated_drivers_and_licenses/fetch_available_options/{update_id}/{calling_module_name}",
+      "request_type":"POST",
+      "description":"Fetch available dropdown options",
+      "enableParams": true,
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   },
+   "Create":{  
+      "url_segments":"api/create/associated_drivers_and_licenses",
+      "request_type":"POST",
+      "description":"Insert database record",
+      "enableParams": true,
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   },
+   "Delete One": {
+      "url_segments": "api/delete/associated_drivers_and_licenses/{id}",
+      "request_type": "DELETE",
+      "description": "Delete one row",
+      "required_fields": [
+         {
+            "name": "id",
+            "label": "ID"
+         }
+      ],
+      "authorization":{  
+         "roles": [
+            "admin"
+         ]
+      }
+   }
+}
