@@ -1,6 +1,6 @@
 <?php
 //Database settings
-define('HOST', 'localhost');
-define('USER', 'root');
+define('HOST', '');
+define('USER', '');
 define('PASSWORD', '');
-define('DATABASE', 'football');
+define('DATABASE', '');
