@@ -1,7 +1,7 @@
 :root {
-  --primary: #47b78e;
-  --primary-dark: #409878;
-  --primary-darker: #3f7f69;
+  --primary: #4682b4;
+  --primary-dark: #427aa8;
+  --primary-darker: #3d719c;
   --primary-color: #fff;
   --secondary: #ff0000;
   --border: #c5c5c5;
@@ -22,43 +22,6 @@ header {
     justify-content: space-between;
     align-items: center;
     text-transform: uppercase;
-}
-
-header ul {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    padding: 0 12px;
-}
-
-header li {
-    margin-right: 22px;
-    padding: 7px 0;
-}
-
-header a {
-    color: #fff;
-    text-decoration: none;
-}
-
-header a:hover {
-    text-decoration: underline;
-    color: #fff;
-}
-
-header > div {
-    margin-right: 12px;
-}
-
-nav ul {
-    margin: 0;
-}
-
-#hamburger {
-  color: #fff;
-  margin: 0.6em;
-  font-size: 1.3em;
-  cursor: pointer;
 }
 
 .wrapper {
@@ -87,22 +50,9 @@ nav ul {
         background-color: red;
     }
 
-    header {
-        justify-content: flex-start;
-    }
-
     #sidebar {
     	display: none;
     }
-
-    h1 {
-        font-size: 2.4em;
-    }
-
-    h2 {
-        font-size: 1.7em;
-    }
-
 }
 
 @media (min-width: 560px) {
@@ -116,30 +66,10 @@ nav ul {
         background-color: yellow;
     }
 
-    header {
-      justify-content: space-between;
-    }
-
-    .hide-lg {
-      display: none;
-    }
-
-    .hide-sm {
-      display: block;
-    }
-
     #sidebar {
     	display: block;
         background-color: #eee;
         min-width: 250px;
-    }
-
-    h1 {
-        font-size: 4em;
-    }
-
-    h2 {
-        font-size: 2em;
     }
 }
 
