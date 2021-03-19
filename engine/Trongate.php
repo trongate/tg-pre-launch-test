@@ -15,10 +15,11 @@ class Trongate {
         $this->modules = new Modules;
 
         //load the helper classes
-        foreach (TRONGATE_HELPERS as $tg_helper) {
-            require_once 'tg_helpers/'.$tg_helper.'.php';
+        foreach (TRONGATE_HELPERS as $trongate_helper) {
+            require_once 'tg_helpers/'.$trongate_helper.'.php';
         }
 
+        $this->url = new Url;
         $this->validation_helper = new Validation_helper;
 
         //load the model class
@@ -125,12 +126,12 @@ class Trongate {
                 if ($return_as_str == true) {
                     // Return output as string
                     ob_start();
-                    require $view_path;
+                    require_once $view_path;
                     $output = ob_get_clean();
                     return $output;
                 } else {
                     // Require view file
-                    require $view_path;
+                    require_once $view_path;
                 }
                 
             } else {
@@ -143,12 +144,12 @@ class Trongate {
                     if ($return_as_str == true) {
                         // Return output as string
                         ob_start();
-                        require $view_path;
+                        require_once $view_path;
                         $output = ob_get_clean();
                         return $output;
                     } else {
                         // Require view file
-                        require $view_path;
+                        require_once $view_path;
                     }
 
                 } else {
@@ -170,6 +171,21 @@ class Trongate {
             // No view exists
             throw new exception('view '.$view_path.' does not exist');
         }
+    }
+
+    public function input($field_name, $clean_up=NULL) {
+        if (!isset($_POST[$field_name])) {
+            $value = '';
+        } else {
+            $value = $_POST[$field_name];
+
+            if (isset($clean_up)) {
+                $value = ltrim(trim(strip_tags($value, FILTER_SANITIZE_STRING)));
+            }
+
+        }
+
+        return $value;
     }
 
     public function upload_picture($data) {
