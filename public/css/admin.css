@@ -46,10 +46,6 @@ header a:hover {
     color: #fff;
 }
 
-header > div {
-    margin-right: 12px;
-}
-
 nav ul {
     margin: 0;
 }
@@ -59,6 +55,10 @@ nav ul {
   margin: 0.6em;
   font-size: 1.3em;
   cursor: pointer;
+}
+
+header > div {
+    margin-right: 12px;
 }
 
 .wrapper {
@@ -78,8 +78,47 @@ nav ul {
     padding: 12px;
 }
 
+#left-nav ul {
+    list-style-type: square;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: stretch;
+    padding-left: 19px;
+}
+
+#left-nav li {
+    width: 100%;
+}
+
+#left-nav li a {
+    color: #555;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#left-nav li a:hover {
+    text-decoration: underline;
+}
+
 .hide-sm {
     display: none;
+}
+
+main {
+    padding-right: 1em;
+}
+
+footer {
+    background-color: black;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+footer > div:nth-child(1) {
+    background-color: #5b5b5b;
+    min-height: 80px;
 }
 
 @media (min-width: 1px) {
