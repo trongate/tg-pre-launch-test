@@ -375,26 +375,26 @@ function submitCreateAssociation(relationName) {
 
 
 
-var sideNavOpen = false;
-var sideNav = document.getElementById('side-nav');
+var slideNavOpen = false;
+var slideNav = document.getElementById('slide-nav');
 var main = document.getElementsByTagName('main')[0];
 
-function openSideNav() {
-    sideNav.style.opacity = 1;
-    sideNav.style.width = '250px';
-    sideNav.style.zIndex = 2;
-    sideNavOpen = true;
+function openSlideNav() {
+    slideNav.style.opacity = 1;
+    slideNav.style.width = '250px';
+    slideNav.style.zIndex = 2;
+    slideNavOpen = true;
 }
 
-function closeSideNav() {
-    sideNav.style.opacity = 0;
-    sideNav.style.width = '0';
-    sideNav.style.zIndex = -1;
-    sideNavOpen = false;
+function closeSlideNav() {
+    slideNav.style.opacity = 0;
+    slideNav.style.width = '0';
+    slideNav.style.zIndex = -1;
+    slideNavOpen = false;
 }
 
 main.addEventListener('click', (ev) => {
-    if ((sideNavOpen == true) && (ev.target.id !== 'open-btn')) {
-        closeSideNav();
+    if ((slideNavOpen == true) && (ev.target.id !== 'open-btn')) {
+        closeSlideNav();
     }
 });

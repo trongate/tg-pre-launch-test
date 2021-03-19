@@ -1,3 +1,5 @@
+@import url("admin-slide-nav.css");
+
 :root {
   --primary: #47b78e;
   --primary-dark: #409878;
@@ -630,12 +632,21 @@ input[type=range]:focus::-ms-fill-upper {
         font-size: 1.7em;
     }
 
+    #gallery-pics {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
 }
 
 @media (min-width: 560px) {
     .bg-marker {
         background-color: orange;
     }
+
+    #gallery-pics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media (min-width: 840px) {
@@ -668,10 +679,18 @@ input[type=range]:focus::-ms-fill-upper {
     h2 {
         font-size: 2em;
     }
+
+    #gallery-pics {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (min-width: 1120px) {
     .bg-marker {
         background-color: green;
+    }
+
+    #gallery-pics {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

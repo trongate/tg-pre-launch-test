@@ -4,29 +4,29 @@
   position: absolute;
   top: 27px;
 }
-#side-nav {
+#slide-nav {
   width: 0;
   opacity: 0;
   height: 100%;
   top: 0;
   left: 0;
   position: fixed;
-  transition: 0.3s;
+  transition: 0.1s;
   z-index: -1;
 }
-#side-nav ul {
+#slide-nav ul {
   list-style-type: none;
   padding: 12px;
 }
-#side-nav li {
+#slide-nav li {
   margin-bottom: 7px;
 }
-#side-nav a {
+#slide-nav a {
   color: #fff;
   text-decoration: none;
   font-size: 1.2em;
 }
-#side-nav a:hover {
+#slide-nav a:hover {
   text-decoration: underline;
 }
 #close-btn {
