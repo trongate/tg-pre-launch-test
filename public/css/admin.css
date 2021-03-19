@@ -1,3 +1,5 @@
+@import url("admin-side-nav.css");
+
 :root {
   --primary: #4682b4;
   --primary-dark: #427aa8;
@@ -43,26 +45,22 @@ nav ul {
     margin: 0;
 }
 
-body > header > div {
-    margin-right: 12px;
+#hamburger {
+  color: #fff;
+  margin: 0.6em;
+  font-size: 1.3em;
+  cursor: pointer;
 }
 
-.wrapper {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 0;
-}  
-
-.wrapper > div:nth-child(1) {
-    background-color: #eee;
-    min-width: 250px;
-    min-height: 98vh;
+body > header > div {
+    margin-right: 12px;
 }
 
 .wrapper > div:nth-child(2) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 95vh;
 }
 
 #sidebar, main, footer > div  {
@@ -599,26 +597,107 @@ input[type=range]:focus::-ms-fill-upper {
     text-align:center;
 }
 
+.bg-marker {
+  background-color: silver;
+}
+
+.hide-on-sm {
+  display: none;
+}
+
+.wrapper > div:nth-child(1) {
+  display: none;
+}
+
+thead > tr:nth-child(1) {
+  display: none;
+}
+
 @media (min-width: 30em) {
     #gallery-pics {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .bg-marker {
+        background-color: red;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+    }  
+
+    .wrapper > div:nth-child(1) {
+        display: none;
+    }
+
+    header {
+        justify-content: flex-start;
+    }
+
+    .hide-on-sm {
+      display: none;
+    }
+
 }
 
 @media (min-width: 50em) {
     #gallery-pics {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .bg-marker {
+        background-color: orange;
+    }
+
+    thead > tr:nth-child(1) {
+      display: table-row;
+    }
+
 }
 
 @media (min-width: 70em) {
     #gallery-pics {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .bg-marker {
+        background-color: yellow;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 2fr 10fr;
+        grid-gap: 0;
+    }  
+
+    .wrapper > div:nth-child(1) {
+        display: block;
+        background-color: #eee;
+        min-width: 250px;
+        min-height: 98vh;
+    }
+
+    header {
+      justify-content: space-between;
+    }
+
+    .hide-on-sm {
+      display: block;
+    }
+
+    .hide-on-lg {
+      display: none;
+    }
+
 }
 
 @media (min-width: 90em) {
     #gallery-pics {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bg-marker {
+        background-color: green;
     }
 }

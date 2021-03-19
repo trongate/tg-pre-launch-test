@@ -1,4 +1,7 @@
 <h1><?= $headline ?></h1>
+
+<div class="bg-marker">x</div>
+
 <?php
 flashdata();
 $btn_attr['class'] = 'button';
@@ -64,7 +67,7 @@ if (resultsTbl !== null) {
 
     function adjustPerPageWidth() {
         var perPage = perPageSelector.options[perPageSelector.selectedIndex].text;
-        var elLength = 4;
+        var elLength = 5;
         if (perPage>99) {
             elLength = elLength + 1;
         }

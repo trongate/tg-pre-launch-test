@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <nav>
+    <nav class="hide-on-sm">
         <ul>
             <li><?= anchor('#', 'Logo') ?></li>
             <li><?= anchor('#', 'About') ?></li>
@@ -24,7 +24,8 @@
             <li><?= anchor('#', 'Partners') ?></li>
         </ul>        
     </nav>
-    <div><?= anchor('#', 'Admin Users') ?></div>
+    <div class="hide-on-sm"><?= anchor('#', 'Admin Users') ?></div>
+    <div id="hamburger" class="hide-on-lg" onclick="openSideNav()">&#9776;</div>
 </header>
 <div class="wrapper">
     <div id="sidebar">
@@ -41,6 +42,16 @@
         </footer>
     </div>
 </div>
+<div id="side-nav">
+    <div id="close-btn" onclick="closeSideNav()">&times;</div>
+    <ul>
+        <li><a href="https://speedcodingacademy.com/">Home</a></li>
+        <li><a href="https://speedcodingacademy.com/contactus">Get In Touch</a></li>
+        <li><a href="https://speedcodingacademy.com/members/login">Members' Login</a></li>
+    </ul>
+</div>
+
+
 <script src="<?= BASE_URL ?>js/admin.js"></script>
 <script src="<?= BASE_URL ?>js/trongate-datetime.js"></script>
 <?= $additional_includes_btm ?>
