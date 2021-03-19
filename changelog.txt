@@ -1,0 +1,34 @@
+* replaced trongate_  with tg_  
+* added themes  
+* syntax changes.
+
+			OUT:
+				$this->url->segment(3);
+			IN
+				segment(3);
+
+			************************************* 
+
+			OUT:
+				$this->input('name');
+			IN
+				input($name);
+
+* added new trongate.css file for fast prototyping  
+* removed ALL third part JS and CSS files
+* added OUR OWN advanced JS components (datetime pickers, 'dropzone' etc)
+
+/////////////////////////////////////////////////////////////////////////
+
+*** DESKTOP APP IMPROVEMENTS ***  
+
+* Full Module Market Integration 
+* Graphical Query Builder 
+
+//////////////////////////////////////////////////////////////////////////
+
+*** MODULE MARKET ***  
+
+* Ability to buy and sell your code using either USD or Tron Crypto tokens.
+
+    
