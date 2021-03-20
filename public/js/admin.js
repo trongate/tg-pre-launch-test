@@ -373,8 +373,6 @@ function submitCreateAssociation(relationName) {
     }
 }
 
-
-
 var slideNavOpen = false;
 var slideNav = document.getElementById('slide-nav');
 var main = document.getElementsByTagName('main')[0];
