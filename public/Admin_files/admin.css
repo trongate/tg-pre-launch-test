@@ -1,5 +1,15 @@
 @import url("admin-slide-nav.css");
 
+:root {
+  --primary: #47b78e;
+  --primary-dark: #409878;
+  --primary-darker: #3f7f69;
+  --primary-color: #fff;
+  --secondary: #ff0000;
+  --border: #c5c5c5;
+  --alt: #fff;
+}
+
 body {
 	margin: 0;
 	min-height: 100vh;
@@ -51,11 +61,6 @@ nav ul {
 
 header > div {
     margin-right: 12px;
-}
-
-header .fa {
-    margin: 0 12px;
-    font-size: 1.3em;
 }
 
 .wrapper {
@@ -201,6 +206,8 @@ th {
 }
 
 thead tr:nth-child(2) th {
+    background-color: var(--primary-dark);
+    border: 1px solid var(--primary-darker);
     font-size: 1em;
 }
 
@@ -635,7 +642,7 @@ input[type=range]:focus::-ms-fill-upper {
 
     #create-btn {
         text-align: center;
-        background-color: #fff;
+        background-color: #eee;
         color: #555;
         font-weight: bold;
         margin-bottom: 3px;

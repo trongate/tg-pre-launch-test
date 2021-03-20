@@ -24,8 +24,14 @@
 	            <li><?= anchor('#', 'Partners') ?></li>
 	        </ul>        
 	    </nav>
-	    <div class="hide-sm"><?= anchor('#', 'Admin Users') ?></div>
 	    <div id="hamburger" class="hide-lg" onclick="openSlideNav()">&#9776;</div>
+	    <div>
+	    	<?php 
+	    	echo anchor('#', '<i class="fa fa-gears"></i>'); 
+	    	echo anchor('#', '<i class="fa fa-user"></i>'); 
+	    	echo anchor('#', '<i class="fa fa-sign-out"></i>'); 
+	    	?>	
+	    </div>
 	</header>
 	<div class="wrapper">
 	    <div id="sidebar">
@@ -45,11 +51,7 @@
 	</div>
 	<div id="slide-nav">
 	    <div id="close-btn" onclick="closeSlideNav()">&times;</div>
-	    <ul>
-	        <li><a href="https://speedcodingacademy.com/">Home</a></li>
-	        <li><a href="https://speedcodingacademy.com/contactus">Get In Touch</a></li>
-	        <li><a href="https://speedcodingacademy.com/members/login">Members' Login</a></li>
-	    </ul>
+	    <ul auto-populate="true"></ul>
 	</div>
 <script src="<?= BASE_URL ?>js/admin.js"></script>
 <script src="<?= BASE_URL ?>js/trongate-datetime.js"></script>

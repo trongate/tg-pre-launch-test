@@ -27,7 +27,7 @@ button:hover, .button:hover {
 }
 
 th {
-    background-color: var(--primary-dark);
+    background-color: var(--primary);
     border: 1px solid var(--primary-darker);
 }
 
@@ -44,8 +44,8 @@ th {
 }
 
 thead tr:nth-child(2) th {
-    background-color: var(--primary);
-    border: 1px solid var(--primary-dark);
+    background-color: var(--primary-dark);
+    border: 1px solid var(--primary-darker);
 }
 
 .card.record-details > div.card-body > div {
