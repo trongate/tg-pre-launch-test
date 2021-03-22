@@ -27,9 +27,9 @@
 	    <div id="hamburger" class="hide-lg" onclick="openSlideNav()">&#9776;</div>
 	    <div>
 	    	<?php 
-	    	echo anchor('#', '<i class="fa fa-gears"></i>'); 
-	    	echo anchor('#', '<i class="fa fa-user"></i>'); 
-	    	echo anchor('#', '<i class="fa fa-sign-out"></i>'); 
+	    	echo anchor('tg_administrators/manage', '<i class="fa fa-gears"></i>'); 
+	    	echo anchor('tg_administrators/account', '<i class="fa fa-user"></i>'); 
+	    	echo anchor('tg_administrators/logout', '<i class="fa fa-sign-out"></i>'); 
 	    	?>	
 	    </div>
 	</header>

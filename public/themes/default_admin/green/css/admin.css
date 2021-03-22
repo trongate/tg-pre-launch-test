@@ -26,11 +26,6 @@ button:hover, .button:hover {
     border: 1px solid var(--primary-darker);
 }
 
-th {
-    background-color: var(--primary-dark);
-    border: 1px solid var(--primary-darker);
-}
-
 #results-tbl > thead > tr:nth-child(1) > th > div > div:nth-child(1) > form > button.alt {
     border: 1px solid var(--primary-darker);
 }
@@ -40,6 +35,11 @@ th {
 }
 
 #results-tbl > thead > tr:nth-child(1) > th > div > div:nth-child(2) > select {
+    border: 1px solid var(--primary-darker);
+}
+
+th {
+    background-color: var(--primary-dark);
     border: 1px solid var(--primary-darker);
 }
 

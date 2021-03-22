@@ -3,7 +3,7 @@ class Tg_administrators extends Trongate {
 
     //NOTE: the default username and password is 'admin' and 'admin'
 
-    private $dashboard_home = 'tg_administrators/manage'; //where to go after login
+    private $dashboard_home = 'cars/manage'; //where to go after login
 
     function login() {
         $data['username'] = input('username');
@@ -99,6 +99,12 @@ class Tg_administrators extends Trongate {
         $this->template('tg_administrators', $data);
     }
 
+    function account() {
+        $token = $this->_make_sure_allowed();
+        $update_id = $this->_get_my_id($token);
+        redirect('tg_administrators/create/'.$update_id);
+    }
+
     function create() {
         $token = $this->_make_sure_allowed();
         $update_id = segment(3);
@@ -144,6 +150,10 @@ class Tg_administrators extends Trongate {
             $data['view_file'] = 'conf_delete';
             $this->template('tg_administrators', $data);
         }
+    }
+
+    function go_home() {
+        redirect($this->dashboard_home);
     }
 
     function _get_my_id($token) {
@@ -248,6 +258,21 @@ class Tg_administrators extends Trongate {
         $this->module('tg_tokens');
         $this->tg_tokens->_destroy();
         redirect('tg_administrators/login');
+    }
+
+    function _delete_tokens_for_user($tg_user_id) {
+        $params['user_id'] = $tg_user_id;
+        $sql = 'delete from tg_tokens where user_id = :user_id';
+        $this->model->query_bind($sql, $params);
+
+        //let's delete expired tokens too
+        $this->_delete_expired_tokens();
+    }
+
+    function _delete_expired_tokens() {
+        $params['nowtime'] = time();
+        $sql = 'delete from tg_tokens where expiry_date<:nowtime';
+        $this->model->query_bind($sql, $params);        
     }
 
     function _hash_string($str) {

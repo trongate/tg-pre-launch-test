@@ -11,8 +11,9 @@
 	<?php
 	if ((segment(2) !== 'login') && (segment(2) !== 'submit_login')) {
 		echo '<div id="top-gutter">';
-		echo anchor('tg_administrators/manage', '<span class="hide-sm">Manage Administrators</span> <i class="fa fa-users"></i>');
-		echo anchor('tg_administrators/create/'.$my_admin_id, '<span class="hide-sm">Your Account</span> <i class="fa fa-gears"></i>'); 
+		echo anchor('tg_administrators/go_home', '<span class="hide-sm">Home</span> <i class="fa fa-home"></i>');
+		echo anchor('tg_administrators/manage', '<span class="hide-sm">Manage Administrators</span> <i class="fa fa-gears"></i>');
+		echo anchor('tg_administrators/create/'.$my_admin_id, '<span class="hide-sm">Your Account</span> <i class="fa fa-user"></i>'); 
 		echo anchor('tg_administrators/logout', '<span class="hide-sm">Logout</span> <i class="fa fa-sign-out"></i>'); 
 		echo '</div>';
 		}

@@ -79,6 +79,11 @@ label span {
     color: green;
 }
 
+.button {
+    text-align: center;
+    width: auto !important;
+}
+
 button, .button {
     background-color: var(--primary);
     border: 1px solid var(--primary-dark);
@@ -336,5 +341,6 @@ hr {
 @media screen and (max-width: 550px) {
   button, .button {
     width: 100%;
+    display: block;
   }
 }
