@@ -13,7 +13,7 @@
 	<div id="top-gutter">
 		<div>
 			<a href="<?= BASE_URL ?>tg-pre-launch-test/tg_administrators/go_home">
-				<span class="hide-sm">Home</span>
+				<span class="hide-sm go-left">Home</span>
 				<i class="fa fa-home"></i>
 			</a>
 		</div>
@@ -63,11 +63,11 @@ h5 { font-size: 1.2em; }
 	justify-content: space-between;
 	line-height: 2.4em;
 	padding: 0 12px;
-	text-align: center;
+	text-align: right;
 }
 
-#top-gutter > div:nth-child(1) {
-	text-align: left !important;
+#top-gutter > div {
+	border: 1px cyan solid;
 }
 
 #top-gutter a {
@@ -126,6 +126,14 @@ table button {
 	margin-bottom: 4px;
 }
 
+@media (min-width: 551px) {
+    .float-right-lg {
+    	float: right;
+    	position: relative;
+    	max-width: 7em;
+    }
+}
+
 @media (max-width: 840px) {
 	h1 { font-size: 1.6em; text-align: center; }
 	h2 { font-size: 1.4em; text-align: center; }
@@ -141,18 +149,6 @@ table button {
 	.button {
 		width: 100%;
 
-	}
-}
-
-@media (max-width: 839px) {
-
-	#top-gutter {
-		font-size: 1.4em;
-	}
-
-	.fa-home {
-		left: -12px;
-		position: relative;
 	}
 }
 
