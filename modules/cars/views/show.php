@@ -6,40 +6,14 @@
     </div>
     <div class="card-body">
         <?php 
-        $attr = array( 
-            "btn-view-all" => array (
-                "class" => "button alt",
-                "id" => "btn-view-all"
-            ),
-            "btn-update" => array (
-                "class" => "button",
-                "id" => "btn-update"
-            ),
-            "btn-delete-modal" => array (
-                "class" => "danger go-right",
-                "id" => "btn-delete-modal",
-                "onclick" => "openModal('delete-modal')"
-            ),
-            "btn-comment" => array (
-                "class" => "alt",
-                "id" => "btn-comment",
-                "onclick" => "openModal('comment-modal')"
-            ),
-            "btn-close" => array (
-                "class" => "alt",
-                "onclick" => "closeModal()"
-            ),
-            "btn-submit-comment" => array (
-                "onclick" => "submitComment()"
-            ),
-            "btn-delete" => array (
-                "class" => "danger"
-            )
-        );
-
-        echo anchor('cars/manage', 'View All Cars', $attr['btn-view-all']);
-        echo anchor('cars/create/'.$update_id, 'Update Details', $attr['btn-update']);
-        echo form_button('delete', 'Delete', $attr['btn-delete-modal']);
+        echo anchor('cars/manage', 'View All Cars', array("class" => "button alt"));
+        echo anchor('cars/create/'.$update_id, 'Update Details', array("class" => "button"));
+		$attr_delete = array( 
+		    "class" => "danger go-right",
+		    "id" => "btn-delete-modal",
+		    "onclick" => "openModal('delete-modal')"
+		);
+		echo form_button('delete', 'Delete', $attr_delete);
         ?>
     </div>
 </div>
@@ -58,21 +32,29 @@
         </div>
         <div class="card-body">
             <div class="text-center">
-                <p><?= form_button('comment', 'Add New Comment', $attr['btn-comment']) ?></p>
+                <p><?php
+				$attr_comment = array( 
+				    "class" => "alt",
+				    "onclick" => "openModal('comment-modal')"
+				);
+                echo form_button('comment', 'Add New Comment', $attr_comment) ?></p>
                 <div id="comments-block"><table></table></div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="modal" id="comment-modal" style="display: none;">
     <div class="modal-heading"><i class="fa fa-commenting-o"></i> Add New Comment</div>
     <div class="modal-body">
         <p><textarea placeholder="Enter comment here..."></textarea></p>
         <p>
-            <?php 
-            echo form_button('close', 'Cancel', $attr['btn-close']);
-            echo form_button('submit', 'Submit Comment', $attr['btn-submit-comment']);
+            <?php
+			$attr_close = array( 
+			    "class" => "alt",
+			    "onclick" => "closeModal()"
+			);
+            echo form_button('close', 'Cancel', $attr_close);
+            echo form_button('submit', 'Submit Comment', array("onclick" => "submitComment()"));
             ?>
         </p>
     </div>
@@ -86,8 +68,8 @@
         Do you really want to do this?</p>
         <p>
             <?php 
-            echo form_button('close', 'Cancel', $attr['btn-close']);
-            echo form_submit('submit', 'Yes - Delete Now', $attr['btn-delete']);
+            echo form_button('close', 'Cancel', $attr_close);
+            echo form_submit('submit', 'Yes - Delete Now', array("class" => 'danger'));
             ?>
         </p>
         <?= form_close() ?>
@@ -97,22 +79,4 @@
 var token = '<?= $token ?>';
 var updateId = '<?= $update_id ?>';
 var baseUrl = '<?= BASE_URL ?>';
-var btnIcons = [
-    {
-        id: 'btn-view-all',
-        icon: 'fa fa-list-alt'
-    },
-    {
-        id: 'btn-update',
-        icon: 'fa fa-pencil'
-    },
-    {
-        id: 'btn-delete-modal',
-        icon: 'fa fa-trash'
-    },
-    {
-        id: 'btn-comment',
-        icon: 'fa fa-commenting-o'
-    }
-]
 </script>

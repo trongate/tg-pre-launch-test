@@ -201,7 +201,7 @@ th {
 
 #results-tbl > thead > tr:nth-child(1) > th > div > div:nth-child(2) > select {
     border: 1px solid var(--primary-darker);
-    width: 4em;
+    width: 5em;
 }
 
 thead tr:nth-child(2) th {
@@ -643,10 +643,6 @@ input[type=range]:focus::-ms-fill-upper {
         color: #555;
         font-weight: bold;
         margin-bottom: 3px;
-    }
-
-    #create-btn, button, .button, .button-alt {
-        border-radius: 4px !important;
     }
 
     thead>tr:nth-child(1) > th form input {

@@ -260,17 +260,6 @@ function submitCreateAssociation(relationName) {
     }
 }
 
-//adds icons to buttons
-if (typeof btnIcons == 'object') {
-    for (var x = 0; x < btnIcons.length; x++) {
-        var targetBtn = document.getElementById(btnIcons[x]['id']);
-        var btnText = targetBtn.firstChild;
-        var icon = document.createElement('i');
-        icon.setAttribute('class', btnIcons[x]['icon']);
-        targetBtn.insertBefore(icon, btnText);
-    }
-}
-
 var slideNavOpen = false;
 var slideNav = document.getElementById('slide-nav');
 var main = document.getElementsByTagName('main')[0];

@@ -34,15 +34,6 @@
 
 
 
-    <div class="card-body">
-        <a href="<?= BASE_URL ?>cars/manage"><button class="alt" id="view-all-btn">View All Cars</button></a>
-        <a href="<?= BASE_URL ?>cars/create/<?= $update_id ?>"><button id="update-btn">Update Details</button></a>
-        <button class="danger float-right" id="delete-btn" onclick="openModal('delete-modal')">Delete</button>
-    </div>
-
-
-
-
 *******************************************************
 *******************************************************
 *******************************************************
