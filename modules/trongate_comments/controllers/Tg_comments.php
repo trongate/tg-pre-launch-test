@@ -25,9 +25,9 @@ class Tg_comments extends Trongate {
 
     function _pre_insert($input) {
         //establish user_id, date_created and code before doing an insert
-        $this->module('tg_tokens');
+        $this->module('trongate_tokens');
         $token = $input['token'];
-        $user = $this->tg_tokens->_fetch_token_obj($token);
+        $user = $this->trongate_tokens->_fetch_token_obj($token);
 
         $input['params']['user_id'] = $user->user_id;
         $input['params']['date_created'] = time();

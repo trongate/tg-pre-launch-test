@@ -169,8 +169,8 @@ class Api extends Trongate {
     function submit_bypass_auth() {
         $post = file_get_contents('php://input');
         $decoded = json_decode($post, true);
-        $this->module('tg_tokens');
-        $this->tg_tokens->_attempt_generate_bypass_token();
+        $this->module('trongate_tokens');
+        $this->trongate_tokens->_attempt_generate_bypass_token();
     }
 
     function _not_allowed_msg() {
@@ -180,10 +180,10 @@ class Api extends Trongate {
 
     function _validate_token($token_validation_data) {
 
-        $this->module('tg_tokens');
+        $this->module('trongate_tokens');
 
         extract($token_validation_data);
-        $endpoint_auth_rules = $this->tg_tokens->_fetch_endpoint_auth_rules($endpoint, $module_endpoints);
+        $endpoint_auth_rules = $this->trongate_tokens->_fetch_endpoint_auth_rules($endpoint, $module_endpoints);
         $authorization_rules = $endpoint_auth_rules['authorization_rules'];
 
         if (!isset($_SERVER['HTTP_TRONGATETOKEN'])) {
@@ -199,7 +199,7 @@ class Api extends Trongate {
 
             $token_validation_data['token'] = $token;
             $token_validation_data['authorization_rules'] = $authorization_rules;
-            $valid = $this->tg_tokens->_is_token_valid($token_validation_data);
+            $valid = $this->trongate_tokens->_is_token_valid($token_validation_data);
 
             if ($valid == false) {
                 $this->_not_allowed_msg();
@@ -491,19 +491,19 @@ class Api extends Trongate {
             die();
         }
 
-        $this->module('tg_security');
+        $this->module('trongate_security');
         $target_module = segment(3);
         $this->_make_sure_table_exists($target_module);
-        $this->module('tg_tokens');
+        $this->module('trongate_tokens');
 
-        $token_data['user_id'] = $this->tg_security->_get_user_id();
+        $token_data['user_id'] = $this->trongate_security->_get_user_id();
         $token_data['code'] = 'aaa';
         
-        $sql = 'delete from tg_tokens where user_id = :user_id and code = :code';
+        $sql = 'delete from trongate_tokens where user_id = :user_id and code = :code';
         $this->model->query_bind($sql, $token_data);
 
         $token_data['expiry_date'] = time() + 7200; //two hours
-        $data['golden_token'] = $this->tg_tokens->_generate_token($token_data);
+        $data['golden_token'] = $this->trongate_tokens->_generate_token($token_data);
         $data['endpoints'] = $this->_fetch_endpoints($target_module);
         $data['endpoint_settings_location'] = '/modules/'.$target_module.'/assets/api.json';
         $columns = $this->_get_all_columns($target_module);

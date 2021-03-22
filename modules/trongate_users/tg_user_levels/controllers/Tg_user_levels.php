@@ -3,18 +3,18 @@ class Tg_user_levels extends Trongate {
 
     function __construct() {
         parent::__construct();
-        $this->parent_module = 'tg_users';
-        $this->child_module = 'tg_user_levels';
+        $this->parent_module = 'trongate_users';
+        $this->child_module = 'trongate_user_levels';
     }
 
     function _get_user_level($user_id) {
 
         $sql = 'SELECT
-                    tg_user_levels.level_title
+                    trongate_user_levels.level_title
                 FROM
-                    tg_users
-                JOIN tg_user_levels ON tg_users.user_level_id = tg_user_levels.id 
-                where tg_users.id = :user_id';
+                    trongate_users
+                JOIN trongate_user_levels ON trongate_users.user_level_id = trongate_user_levels.id 
+                where trongate_users.id = :user_id';
 
         $data['user_id'] = $user_id;
         $result = $this->model->query_bind($sql, $data, 'array');

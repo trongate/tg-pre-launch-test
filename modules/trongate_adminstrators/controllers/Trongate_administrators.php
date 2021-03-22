@@ -8,9 +8,9 @@ class Tg_administrators extends Trongate {
     function login() {
         $data['username'] = input('username');
         $data['form_location'] = str_replace('/login', '/submit_login', current_url());
-        $data['view_module'] = 'tg_administrators';
+        $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'login_form'; 
-        $this->template('tg_administrators', $data);
+        $this->template('trongate_administrators', $data);
     }
 
     function submit_login() {
@@ -53,23 +53,23 @@ class Tg_administrators extends Trongate {
                     set_flashdata('The record was successfully updated');
                 } else {
 
-                    //create a new tg_users record 
-                    $this->module('tg_users');
+                    //create a new trongate_users record 
+                    $this->module('trongate_users');
                     $params['code'] = make_rand_str(32);
                     $params['user_level_id'] = 1;
-                    $data['tg_user_id'] = $this->model->insert($params, 'tg_users');
+                    $data['trongate_user_id'] = $this->model->insert($params, 'trongate_users');
 
                     $this->model->insert($data);
                     set_flashdata('The record was successfully created');
                 }
 
-                redirect('tg_administrators/manage');
+                redirect('trongate_administrators/manage');
 
             } else {
                 $this->create();
             }
         } elseif($submit == 'Cancel') {
-            redirect('tg_administrators/manage');
+            redirect('trongate_administrators/manage');
         }
     }
 
@@ -80,29 +80,29 @@ class Tg_administrators extends Trongate {
 
         if (($submit == 'Delete Record Now') && (is_numeric($update_id))) {
             //get the trongate_user_id 
-            $user_obj = $this->model->get_where($update_id, 'tg_users');
-            $trongate_user_id = $user_obj->tg_user_id;
-            $this->model->delete($trongate_user_id, 'tg_users');
-            $this->model->delete($update_id, 'tg_users');
+            $user_obj = $this->model->get_where($update_id, 'trongate_users');
+            $trongate_user_id = $user_obj->trongate_user_id;
+            $this->model->delete($trongate_user_id, 'trongate_users');
+            $this->model->delete($update_id, 'trongate_users');
             set_flashdata('The record was successfully deleted');
         }
 
-        redirect('tg_administrators/manage');
+        redirect('trongate_administrators/manage');
     }
 
     function manage() {
         $token = $this->_make_sure_allowed();
         $data['my_admin_id'] = $this->_get_my_id($token);
-        $data['rows'] = $this->model->get('username', 'tg_administrators');
-        $data['view_module'] = 'tg_administrators';
+        $data['rows'] = $this->model->get('username', 'trongate_administrators');
+        $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'manage';
-        $this->template('tg_administrators', $data);
+        $this->template('trongate_administrators', $data);
     }
 
     function account() {
         $token = $this->_make_sure_allowed();
         $update_id = $this->_get_my_id($token);
-        redirect('tg_administrators/create/'.$update_id);
+        redirect('trongate_administrators/create/'.$update_id);
     }
 
     function create() {
@@ -132,9 +132,9 @@ class Tg_administrators extends Trongate {
         $data['form_location'] = str_replace('/create', '/submit', current_url());
         $data['conf_delete_url'] = str_replace('/create', '/conf_delete', current_url());
         $data['token'] = $this->_make_sure_allowed();
-        $data['view_module'] = 'tg_administrators';
+        $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'create';
-        $this->template('tg_administrators', $data);
+        $this->template('trongate_administrators', $data);
     }
 
     function conf_delete() {
@@ -142,13 +142,13 @@ class Tg_administrators extends Trongate {
         $update_id =  segment(3);
 
         if (!is_numeric($update_id)) {
-            redirect('tg_administrators/manage');
+            redirect('trongate_administrators/manage');
         } else {
             $data['my_admin_id'] = $this->_get_my_id($token);
             $data['form_location'] = str_replace('/conf_delete', '/submit_delete', current_url());
-            $data['view_module'] = 'tg_administrators';
+            $data['view_module'] = 'trongate_administrators';
             $data['view_file'] = 'conf_delete';
-            $this->template('tg_administrators', $data);
+            $this->template('trongate_administrators', $data);
         }
     }
 
@@ -158,14 +158,14 @@ class Tg_administrators extends Trongate {
 
     function _get_my_id($token) {
         $params['token'] = $token;
-        $sql = 'SELECT tg_administrators.id
-                FROM tg_users
-                INNER JOIN tg_administrators
-                       ON tg_users.id = tg_administrators.tg_user_id
-                INNER JOIN tg_tokens
-                       ON tg_tokens.user_id = tg_users.id 
-                WHERE tg_tokens.token = :token 
-                ORDER BY tg_tokens.id DESC LIMIT 0,1';
+        $sql = 'SELECT trongate_administrators.id
+                FROM trongate_users
+                INNER JOIN trongate_administrators
+                       ON trongate_users.id = trongate_administrators.trongate_user_id
+                INNER JOIN trongate_tokens
+                       ON trongate_tokens.user_id = trongate_users.id 
+                WHERE trongate_tokens.token = :token 
+                ORDER BY trongate_tokens.id DESC LIMIT 0,1';
         $result = $this->model->query_bind($sql, $params, 'object');
         if (gettype($result) == 'array') {
             $id = $result[0]->id;
@@ -179,35 +179,35 @@ class Tg_administrators extends Trongate {
 
         //let's assume that only users with a valid token 
         //who are user_level_id = 1 can view
-        $this->module('tg_tokens');
-        $token = $this->tg_tokens->_attempt_get_valid_token(1);
+        $this->module('trongate_tokens');
+        $token = $this->trongate_tokens->_attempt_get_valid_token(1);
 
         if ($token == false) {
 
             if (ENV == 'dev') {
                 //automatically give token to user when in dev mode
 
-                //generate trongatetoken for 1st tg_administrator record on tbl
-                $sql = 'select * from tg_administrators order by id limit 0,1';
+                //generate trongatetoken for 1st trongate_administrator record on tbl
+                $sql = 'select * from trongate_administrators order by id limit 0,1';
                 $rows = $this->model->query($sql, 'object');
 
                 if ($rows == false) {
-                    redirect(BASE_URL.'tg_administrators/missing_tbl_msg');
+                    redirect(BASE_URL.'trongate_administrators/missing_tbl_msg');
                 } else {
-                    $token_params['user_id'] = $rows[0]->tg_user_id;
+                    $token_params['user_id'] = $rows[0]->trongate_user_id;
 
                     //start off by clearing all tokens for this user
                     $this->_delete_tokens_for_user($token_params['user_id']);
 
                     //now generate the new token
                     $token_params['expiry_date'] = 86400+time();
-                    $this->module('tg_tokens');
-                    $_SESSION['trongatetoken'] = $this->tg_tokens->_generate_token($token_params);
+                    $this->module('trongate_tokens');
+                    $_SESSION['trongatetoken'] = $this->trongate_tokens->_generate_token($token_params);
                     return $_SESSION['trongatetoken'];
                 }
 
             } else {
-                redirect('tg_administrators/login');
+                redirect('trongate_administrators/login');
             }
 
         } else {
@@ -236,33 +236,33 @@ class Tg_administrators extends Trongate {
 
     function _log_user_in($username) {
         $user_obj = $this->model->get_one_where('username', $username);
-        $trongate_user_id = $user_obj->tg_user_id;
+        $trongate_user_id = $user_obj->trongate_user_id;
         $token_data['user_id'] = $trongate_user_id;
 
         $remember = input('remember');
         if (($remember === '1') || ($remember === 1)) {
             //set a cookie and remember for 30 days
             $token_data['expiry_date'] = time() + (86400*30);
-            $token = $this->tg_tokens->_generate_token($token_data);
+            $token = $this->trongate_tokens->_generate_token($token_data);
             setcookie('trongatetoken', $token, $token_data['expiry_date'], '/');            
         } else {
             //user did not select 'remember me' checkbox
-            $this->module('tg_tokens');
-            $_SESSION['trongatetoken'] = $this->tg_tokens->_generate_token($token_data);            
+            $this->module('trongate_tokens');
+            $_SESSION['trongatetoken'] = $this->trongate_tokens->_generate_token($token_data);            
         }
 
         redirect($this->dashboard_home);
     }
 
     function logout() {
-        $this->module('tg_tokens');
-        $this->tg_tokens->_destroy();
-        redirect('tg_administrators/login');
+        $this->module('trongate_tokens');
+        $this->trongate_tokens->_destroy();
+        redirect('trongate_administrators/login');
     }
 
-    function _delete_tokens_for_user($tg_user_id) {
-        $params['user_id'] = $tg_user_id;
-        $sql = 'delete from tg_tokens where user_id = :user_id';
+    function _delete_tokens_for_user($trongate_user_id) {
+        $params['user_id'] = $trongate_user_id;
+        $sql = 'delete from trongate_tokens where user_id = :user_id';
         $this->model->query_bind($sql, $params);
 
         //let's delete expired tokens too
@@ -271,7 +271,7 @@ class Tg_administrators extends Trongate {
 
     function _delete_expired_tokens() {
         $params['nowtime'] = time();
-        $sql = 'delete from tg_tokens where expiry_date<:nowtime';
+        $sql = 'delete from trongate_tokens where expiry_date<:nowtime';
         $this->model->query_bind($sql, $params);        
     }
 
@@ -290,7 +290,7 @@ class Tg_administrators extends Trongate {
     function username_check($str) {
         //NOTE: You may wish to add other rules of your own here! 
         $update_id =  segment(3);
-        $result = $this->model->get_one_where('username', $str, 'tg_administrators');
+        $result = $this->model->get_one_where('username', $str, 'trongate_administrators');
         $error_msg = 'The username that you submitted is not available.';
 
         if (gettype($result) == 'object') {
@@ -311,7 +311,7 @@ class Tg_administrators extends Trongate {
         $submitted_password = input('password');
         $error_msg = 'You did not enter a correct username and/or or password.';
     
-        $result = $this->model->get_one_where('username', $submitted_username, 'tg_administrators');
+        $result = $this->model->get_one_where('username', $submitted_username, 'trongate_administrators');
         if (gettype($result) == 'object') {
             $hashed_password = $result->password;
             $is_password_good = $this->_verify_hash($submitted_password, $hashed_password);

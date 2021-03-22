@@ -142,7 +142,7 @@ if (segment3 == 'show') {
                 update_id: updateId
             }
 
-            var targetUrl = baseUrl + 'api/create/tg_comments';
+            var targetUrl = baseUrl + 'api/create/trongate_comments';
             const http = new XMLHttpRequest();
             http.open('post', targetUrl);
             http.setRequestHeader('Content-type', 'application/json');
@@ -153,7 +153,7 @@ if (segment3 == 'show') {
 
                 if (http.status == 401) {
                     //invalid token!
-                    window.location.href = baseUrl + 'tg_administrators/login';
+                    window.location.href = baseUrl + 'trongate_administrators/login';
                 } else if(http.status == 200) {
                     fetchComments();
                 }
@@ -172,7 +172,7 @@ if (segment3 == 'show') {
             orderBy: 'date_created'
         }
 
-        var targetUrl = baseUrl + 'api/get/tg_comments';
+        var targetUrl = baseUrl + 'api/get/trongate_comments';
         const http = new XMLHttpRequest();
         http.open('post', targetUrl);
         http.setRequestHeader('Content-type', 'application/json');
@@ -182,7 +182,7 @@ if (segment3 == 'show') {
         http.onload = function() {
             if (http.status == 401) {
                 //invalid token!
-                window.location.href = baseUrl + 'tg_administrators/login';
+                window.location.href = baseUrl + 'trongate_administrators/login';
             } else if(http.status == 200) {
 
                 while (commentsTbl.firstChild) {

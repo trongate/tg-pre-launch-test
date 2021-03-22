@@ -3,7 +3,7 @@
 <p>
 <?php
 $attr['class'] = 'button';  
-echo anchor('tg_administrators/create', 'Create New Record <i class="fa fa-pencil"></i></button>', $attr); 
+echo anchor('trongate_administrators/create', 'Create New Record <i class="fa fa-pencil"></i></button>', $attr); 
 ?>
 </p>
 
@@ -21,7 +21,7 @@ echo anchor('tg_administrators/create', 'Create New Record <i class="fa fa-penci
 			<td><?= $row->username ?></td>
 			<td style="text-align: center;">
 				<?php  
-				$edit_url = BASE_URL.'tg_administrators/create/'.$row->id;
+				$edit_url = BASE_URL.'trongate_administrators/create/'.$row->id;
 				echo anchor($edit_url, 'Edit <i class="fa fa-pencil"></i></button>', $attr);
 				?>
 			</td>

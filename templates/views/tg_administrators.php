@@ -12,7 +12,7 @@
 	if ((segment(2) !== 'login') && (segment(2) !== 'submit_login')) { ?>
 	<div id="top-gutter">
 		<div>
-			<a href="<?= BASE_URL ?>tg-pre-launch-test/tg_administrators/go_home">
+			<a href="<?= BASE_URL ?>tg-pre-launch-test/trongate_administrators/go_home">
 				<span class="hide-sm">Home</span>
 				<i class="fa fa-home"></i>
 			</a>
@@ -22,7 +22,7 @@
 				<span class="hide-sm">Manage Administrators</span>
 				<i class="fa fa-gears"></i>
 			</a>
-			<a href="<?= BASE_URL ?>tg-pre-launch-test/tg_administrators/create/1">
+			<a href="<?= BASE_URL ?>tg-pre-launch-test/trongate_administrators/create/1">
 				<span class="hide-sm">Your Account</span>
 				<i class="fa fa-user"></i>
 			</a>

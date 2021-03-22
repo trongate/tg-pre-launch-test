@@ -1,6 +1,6 @@
 {
   "Get": {
-    "url_segments": "api/get/tg_administrators",
+    "url_segments": "api/get/trongate_administrators",
     "request_type": "GET",
     "description": "Fetch rows from table",
     "enableParams": true,
@@ -11,7 +11,7 @@
     }
   },
   "Get By Post": {
-    "url_segments": "api/get/tg_administrators",
+    "url_segments": "api/get/trongate_administrators",
     "request_type": "POST",
     "description": "Fetch rows from table using POST request.",
     "enableParams": true,
@@ -22,7 +22,7 @@
     }
   },
   "Find One": {
-    "url_segments": "api/get/tg_administrators/{id}",
+    "url_segments": "api/get/trongate_administrators/{id}",
     "request_type": "GET",
     "description": "Fetch one row",
     "required_fields": [
@@ -33,7 +33,7 @@
     ]
   },
   "Exists": {
-    "url_segments": "api/exists/tg_administrators/{id}",
+    "url_segments": "api/exists/trongate_administrators/{id}",
     "request_type": "GET",
     "description": "Check if instance exists",
     "required_fields": [
@@ -44,13 +44,13 @@
     ]
   },
   "Count": {
-    "url_segments": "api/count/tg_administrators",
+    "url_segments": "api/count/trongate_administrators",
     "request_type": "GET",
     "description": "Count number of records",
     "enableParams": true
   },
   "Count By Post": {
-    "url_segments": "api/count/tg_administrators",
+    "url_segments": "api/count/trongate_administrators",
     "request_type": "POST",
     "description": "Count number of records using POST request",
     "enableParams": true,
@@ -61,7 +61,7 @@
     }
   },
   "Create": {
-    "url_segments": "api/create/tg_administrators",
+    "url_segments": "api/create/trongate_administrators",
     "request_type": "POST",
     "description": "Insert database record",
     "enableParams": true,
@@ -73,13 +73,13 @@
     "beforeHook": "_pre_insert_actions"
   },
   "Insert Batch": {
-    "url_segments": "api/batch/tg_administrators",
+    "url_segments": "api/batch/trongate_administrators",
     "request_type": "POST",
     "description": "Insert multiple records",
     "enableParams": true
   },
   "Update": {
-    "url_segments": "api/update/tg_administrators/{id}",
+    "url_segments": "api/update/trongate_administrators/{id}",
     "request_type": "PUT",
     "description": "Update a database record",
     "enableParams": true,
@@ -97,13 +97,13 @@
     "beforeHook": "_prep_password"
   },
   "Destroy": {
-    "url_segments": "api/destroy/tg_administrators",
+    "url_segments": "api/destroy/trongate_administrators",
     "request_type": "DELETE",
     "description": "Delete row or rows",
     "enableParams": true
   },
   "Delete One": {
-    "url_segments": "api/delete/tg_administrators/{id}",
+    "url_segments": "api/delete/trongate_administrators/{id}",
     "request_type": "DELETE",
     "description": "Delete one row",
     "required_fields": [
@@ -117,6 +117,6 @@
             "admin"
         ]
     },
-    "beforeHook": "_delete_tg_user"
+    "beforeHook": "_delete_trongate_user"
   }
 }

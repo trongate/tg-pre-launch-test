@@ -5,8 +5,8 @@ class Templates extends Trongate {
         load('error_404', $data);
     }
 
-    function tg_administrators($data) {
-        load('tg_administrators', $data);
+    function trongate_administrators($data) {
+        load('trongate_administrators', $data);
     }
 
     function admin($data) {

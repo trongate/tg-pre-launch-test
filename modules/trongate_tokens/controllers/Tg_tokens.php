@@ -3,7 +3,7 @@ class Tg_tokens extends Trongate {
 
     /*
      * This a utility class that can assist you with things like securing API endpoints
-     * The class is associated with a database table called tg_tokens. 
+     * The class is associated with a database table called trongate_tokens. 
      * Therefore, a database connection is required for this class to work.
      *
      * The default expiry time for tokens is set to one day.  However, you can 
@@ -31,7 +31,7 @@ class Tg_tokens extends Trongate {
     function _fetch_token($user_id) {
 
         $this->_delete_old_tokens();
-        $result = $this->model->get_one_where('user_id', $user_id, 'tg_tokens');
+        $result = $this->model->get_one_where('user_id', $user_id, 'trongate_tokens');
 
         if ($result == false) {
             //generate new token
@@ -75,7 +75,7 @@ class Tg_tokens extends Trongate {
             unset($params['set_cookie']);
         }
 
-        $this->model->insert($params, 'tg_tokens');
+        $this->model->insert($params, 'trongate_tokens');
 
         if (isset($data['set_cookie'])) {
             setcookie('trongatetoken', $random_string, $data['expiry_date'], '/');
@@ -105,7 +105,7 @@ class Tg_tokens extends Trongate {
         }
 
         $data['token'] = $old_token;
-        $sql = 'select * from tg_tokens where token = :token';
+        $sql = 'select * from trongate_tokens where token = :token';
         $tokens = $this->model->query_bind($sql, $data, 'object');
         $num_rows = count($tokens);
 
@@ -118,7 +118,7 @@ class Tg_tokens extends Trongate {
             $new_data['code'] = $this_token->code;
             $new_data['expiry_date'] = $expiry_date;
             $new_data['token'] = $new_token;
-            $this->model->update($update_id, $new_data, 'tg_tokens');
+            $this->model->update($update_id, $new_data, 'trongate_tokens');
             echo $new_token;
         } else {
             echo 'false';
@@ -128,7 +128,7 @@ class Tg_tokens extends Trongate {
 
     function _fetch_token_obj($token) {
         $data['token'] = $token;
-        $sql = 'select * from tg_tokens where token = :token';
+        $sql = 'select * from trongate_tokens where token = :token';
         $token_objs = $this->model->query_bind($sql, $data, 'object');
 
         if ($token_objs == false) {
@@ -181,7 +181,7 @@ class Tg_tokens extends Trongate {
         $this->_delete_old_tokens(); //housekeeping
 
         //try admin ('aaa') authentication
-        $result = $this->model->get_one_where('token', $token, 'tg_tokens');
+        $result = $this->model->get_one_where('token', $token, 'trongate_tokens');
 
         if ($result == false) {
             //invalid token
@@ -226,8 +226,8 @@ class Tg_tokens extends Trongate {
     function _test_for_user_role($role_rules, $user_id) {
   
         //fetch the role (user_level) for this user
-        $this->module('tg_users-tg_user_levels');
-        $user_level = $this->tg_user_levels->_get_user_level($user_id);
+        $this->module('trongate_users-trongate_user_levels');
+        $user_level = $this->trongate_user_levels->_get_user_level($user_id);
 
         if (in_array($user_level, $role_rules)) {
             return true;
@@ -291,7 +291,7 @@ class Tg_tokens extends Trongate {
         if (isset($tokens_to_delete)) {
             foreach ($tokens_to_delete as $token) {
                 $params['token'] = $token;
-                $sql = 'delete from tg_tokens where token = :token';
+                $sql = 'delete from trongate_tokens where token = :token';
                 $this->model->query_bind($sql, $params);
             }
         }
@@ -300,7 +300,7 @@ class Tg_tokens extends Trongate {
 
     function _delete_old_tokens($user_id=NULL) {
 
-        $sql = 'delete from tg_tokens where expiry_date < :nowtime';
+        $sql = 'delete from trongate_tokens where expiry_date < :nowtime';
         $data['nowtime'] = time();
 
         if (isset($user_id)) {
@@ -312,7 +312,7 @@ class Tg_tokens extends Trongate {
     }
 
     function _delete_one_token($token) {
-        $sql = 'delete from tg_tokens where token = ?';
+        $sql = 'delete from trongate_tokens where token = ?';
         $data[] = $token;
         $this->model->query_bind($sql, $data);        
     }
@@ -321,13 +321,13 @@ class Tg_tokens extends Trongate {
 
         $sql = '
                 SELECT
-                    tg_user_levels.level_title
+                    trongate_user_levels.level_title
                 FROM
-                    tg_tokens
-                JOIN tg_users ON tg_tokens.user_id = tg_users.id
-                JOIN tg_user_levels ON tg_users.user_level_id = tg_user_levels.id 
+                    trongate_tokens
+                JOIN trongate_users ON trongate_tokens.user_id = trongate_users.id
+                JOIN trongate_user_levels ON trongate_users.user_level_id = trongate_user_levels.id 
                 WHERE
-                    tg_tokens.token = :token 
+                    trongate_tokens.token = :token 
         ';
 
         $data['token'] = $token;
@@ -387,23 +387,23 @@ class Tg_tokens extends Trongate {
 
     function _execute_sql_single($user_tokens, $user_levels) {
         //allow access for ONE user level type
-        $where_condition = ' WHERE tg_tokens.token = :token ';
+        $where_condition = ' WHERE trongate_tokens.token = :token ';
         $params['user_level_id'] = $user_levels; //int
         $params['nowtime'] = time();
 
         foreach ($user_tokens as $token) {
             $params['token'] = $token;
             $sql = 'SELECT 
-                            tg_tokens.token 
+                            trongate_tokens.token 
                     FROM 
-                            tg_tokens 
+                            trongate_tokens 
                     INNER JOIN
-                            tg_users 
+                            trongate_users 
                     ON  
-                            tg_tokens.user_id = tg_users.id
+                            trongate_tokens.user_id = trongate_users.id
                     '.$where_condition.' 
                     AND 
-                            tg_users.user_level_id = :user_level_id';
+                            trongate_users.user_level_id = :user_level_id';
             $sql.= ' AND expiry_date > :nowtime ';
             $rows = $this->model->query_bind($sql, $params, 'object');
 
@@ -419,7 +419,7 @@ class Tg_tokens extends Trongate {
 
     function _execute_sql_multi($user_tokens, $user_levels) {
         //allow access for MORE THAN ONE user level type
-        $where_condition = ' WHERE tg_tokens.token = :token ';
+        $where_condition = ' WHERE trongate_tokens.token = :token ';
         $params['nowtime'] = time();
 
         $and_condition = ' AND (';
@@ -434,7 +434,7 @@ class Tg_tokens extends Trongate {
                 $and_condition.= ' OR';
             }
 
-            $and_condition.= ' tg_users.user_level_id = :'.$this_property;
+            $and_condition.= ' trongate_users.user_level_id = :'.$this_property;
         }
         $and_condition.= ')';
         $and_condition = ltrim(trim($and_condition));
@@ -443,13 +443,13 @@ class Tg_tokens extends Trongate {
         foreach ($user_tokens as $token) {
             $params['token'] = $token;
             $sql = 'SELECT 
-                            tg_tokens.token 
+                            trongate_tokens.token 
                     FROM 
-                            tg_tokens 
+                            trongate_tokens 
                     INNER JOIN
-                            tg_users 
+                            trongate_users 
                     ON  
-                            tg_tokens.user_id = tg_users.id
+                            trongate_tokens.user_id = trongate_users.id
                     '.$where_condition.' 
                     '.$and_condition;  
             $sql.= ' AND expiry_date > :nowtime ';
@@ -467,15 +467,15 @@ class Tg_tokens extends Trongate {
 
     function _execute_sql_default($user_tokens) {
         //allow access for ANY user level type
-        $where_condition = ' WHERE tg_tokens.token = :token ';
+        $where_condition = ' WHERE trongate_tokens.token = :token ';
         $params['nowtime'] = time();
 
         foreach ($user_tokens as $token) {
             $params['token'] = $token;
             $sql = 'SELECT 
-                            tg_tokens.token 
+                            trongate_tokens.token 
                     FROM 
-                            tg_tokens 
+                            trongate_tokens 
                     '.$where_condition;  
             $sql.= ' AND expiry_date > :nowtime ';
             $rows = $this->model->query_bind($sql, $params, 'object');

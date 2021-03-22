@@ -1,6 +1,6 @@
 {
   "Get By Post": {
-    "url_segments": "api/get/tg_comments",
+    "url_segments": "api/get/trongate_comments",
     "request_type": "POST",
     "description": "Fetch rows from table using POST request.",
     "enableParams": true,
@@ -12,7 +12,7 @@
     "afterHook":"_prep_comments"
   },
    "Create":{
-      "url_segments":"api/create/tg_comments",
+      "url_segments":"api/create/trongate_comments",
       "request_type":"POST",
       "description":"Insert database record",
       "enableParams":true,
