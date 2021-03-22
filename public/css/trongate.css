@@ -82,6 +82,7 @@ label span {
 .button {
     text-align: center;
     width: auto !important;
+    display: inline-block;
 }
 
 button, .button {
@@ -275,7 +276,8 @@ hr {
 }
 
 .modal {
-    width: 570px;
+    width: 90%;
+    max-width: 570px;
     z-index: -4;
     background-color: white;
     opacity: 0;

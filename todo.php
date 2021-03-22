@@ -10,6 +10,39 @@
 7). Upload to Github and get the code generator generating this thing.  
 
 
+
+        $attr = array( 
+            "btn1" => array (
+                "class" => ,
+                "maths" => 30,   
+                "chemistry" => 39
+            ),
+
+            "qadir" => array (
+                "physics" => 30,
+                "maths" => 32,
+                "chemistry" => 29
+            ),
+
+            "zara" => array (
+                "physics" => 31,
+                "maths" => 22,
+                "chemistry" => 39
+            )
+        );
+
+
+
+
+    <div class="card-body">
+        <a href="<?= BASE_URL ?>cars/manage"><button class="alt" id="view-all-btn">View All Cars</button></a>
+        <a href="<?= BASE_URL ?>cars/create/<?= $update_id ?>"><button id="update-btn">Update Details</button></a>
+        <button class="danger float-right" id="delete-btn" onclick="openModal('delete-modal')">Delete</button>
+    </div>
+
+
+
+
 *******************************************************
 *******************************************************
 *******************************************************

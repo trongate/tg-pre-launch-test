@@ -151,6 +151,10 @@ button:hover, .button:hover {
     border: 1px solid var(--primary-darker);
 }
 
+button .fa, .button .fa {
+    margin-right: 7px;
+}
+
 input[type="text"], input[type="email"], input[type="password"], button, textarea, select {
     border-radius: 0;
 }
@@ -665,6 +669,16 @@ input[type=range]:focus::-ms-fill-upper {
     thead>tr:nth-child(1) > th > div > div {
         margin: 3px 0;
     }
+
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    #comment-modal > div.modal-body > p:nth-child(2),
+    #delete-modal > div.modal-body > form > p:nth-child(3) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 }
 
 @media (min-width: 560px) {
@@ -676,6 +690,12 @@ input[type=range]:focus::-ms-fill-upper {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .go-right {
+        float: right;
+        position: relative;
+        display: block;
+    }
+
 }
 
 @media (min-width: 840px) {
@@ -685,6 +705,10 @@ input[type=range]:focus::-ms-fill-upper {
 
     .hide-lg {
       display: none;
+    }
+
+    h1 .hide-sm {
+        display: inline-block;
     }
 
     .hide-sm {
