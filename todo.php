@@ -1,6 +1,4 @@
-1). Update/Create page    													DONE
-2). Show Page  
-3). Test Pagination on small screen
+
 --------------------------------------
 4). Ditch tg_  and replace with trongate_  
 5). Sort out dashboard link (get it on the left and lose the underlines)

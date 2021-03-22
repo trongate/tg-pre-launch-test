@@ -195,6 +195,14 @@ th {
     text-transform: none;
 }
 
+#results-tbl > thead > tr:nth-child(2) > th:nth-child(2) {
+    width: 20px;
+}
+
+#results-tbl > tbody > tr > td:nth-child(2) > a {
+    margin: 4px;
+}
+
 #results-tbl > thead input[type="text"] {
     border: 1px solid var(--primary-darker);
 }
