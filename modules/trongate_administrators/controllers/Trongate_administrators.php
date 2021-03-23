@@ -10,7 +10,7 @@ class Trongate_administrators extends Trongate {
         $data['form_location'] = str_replace('/login', '/submit_login', current_url());
         $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'login_form'; 
-        $this->template('trongate_administrators', $data);
+        $this->load_template($data);
     }
 
     function submit_login() {
@@ -57,8 +57,11 @@ class Trongate_administrators extends Trongate {
                     $this->module('trongate_users');
                     $params['code'] = make_rand_str(32);
                     $params['user_level_id'] = 1;
-                    $data['trongate_user_id'] = $this->model->insert($params, 'trongate_users');
 
+echo 'cool'; die();
+
+                    $data['trongate_user_id'] = $this->model->insert($params, 'trongate_users');
+echo 'yes'; die();
                     $this->model->insert($data);
                     set_flashdata('The record was successfully created');
                 }
@@ -96,7 +99,12 @@ class Trongate_administrators extends Trongate {
         $data['rows'] = $this->model->get('username', 'trongate_administrators');
         $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'manage';
-        $this->template('trongate_administrators', $data);
+        $this->load_template($data);
+    }
+
+    function load_template($data) {
+        $file_path = APPPATH.'modules/trongate_administrators/views/tg_admin_template.php';
+        require_once($file_path);
     }
 
     function account() {
@@ -134,7 +142,7 @@ class Trongate_administrators extends Trongate {
         $data['token'] = $this->_make_sure_allowed();
         $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'create';
-        $this->template('trongate_administrators', $data);
+        $this->load_template($data);
     }
 
     function conf_delete() {
