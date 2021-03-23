@@ -1,14 +1,4 @@
-@import url("admin-side-nav.css");
-
-:root {
-  --primary: #4682b4;
-  --primary-dark: #427aa8;
-  --primary-darker: #3d719c;
-  --primary-color: #fff;
-  --secondary: #ff0000;
-  --border: #c5c5c5;
-  --alt: #fff;
-}
+@import url("admin-slide-nav.css");
 
 body {
 	margin: 0;
@@ -48,10 +38,6 @@ header a:hover {
     color: #fff;
 }
 
-header > div {
-    margin-right: 12px;
-}
-
 nav ul {
     margin: 0;
 }
@@ -63,16 +49,19 @@ nav ul {
   cursor: pointer;
 }
 
+header > div {
+    margin-right: 12px;
+}
+
+header .fa {
+    margin: 0 12px;
+    font-size: 1.3em;
+}
+
 .wrapper {
 	flex: 1;
 	display: flex;
 	flex-direction: row;
-}
-
-.wrapper > div:nth-child(1) {
-    display: block;
-    background-color: #eee;
-    min-width: 250px;
 }
 
 .wrapper > div:nth-child(2) {
@@ -87,28 +76,30 @@ nav ul {
 }
 
 #left-nav ul {
-    list-style: none;
+    list-style-type: square;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: stretch;
-    padding: 0;
+    padding-left: 19px;
 }
 
 #left-nav li {
-  width: 100%;
+    width: 100%;
 }
 
-#left-nav ul a {
-    color: #000;
+#left-nav li a {
+    color: #555;
+    font-weight: bold;
     text-decoration: none;
-    text-transform: uppercase;
-    display: block;
 }
 
-#left-nav ul a:hover {
-    background-color: #000;
-    color: #fff;
+#left-nav li a:hover {
+    text-decoration: underline;
+}
+
+.hide-sm {
+    display: none;
 }
 
 main {
@@ -125,11 +116,6 @@ footer {
 footer > div:nth-child(1) {
     background-color: #5b5b5b;
     min-height: 80px;
-}
-
-h1 {
-    font-size: 2.7em;
-    margin: 0.6em 0;
 }
 
 .alt {
@@ -163,6 +149,10 @@ button, .button {
 button:hover, .button:hover {
     background-color: var(--primary-darker);
     border: 1px solid var(--primary-darker);
+}
+
+button .fa, .button .fa {
+    margin-right: 7px;
 }
 
 input[type="text"], input[type="email"], input[type="password"], button, textarea, select {
@@ -205,18 +195,24 @@ th {
     text-transform: none;
 }
 
+#results-tbl > thead > tr:nth-child(2) > th:nth-child(2) {
+    width: 20px;
+}
+
+#results-tbl > tbody > tr > td:nth-child(2) > a {
+    margin: 4px;
+}
+
 #results-tbl > thead input[type="text"] {
     border: 1px solid var(--primary-darker);
 }
 
 #results-tbl > thead > tr:nth-child(1) > th > div > div:nth-child(2) > select {
     border: 1px solid var(--primary-darker);
-    width: 4em;
+    width: 5em;
 }
 
 thead tr:nth-child(2) th {
-    background-color: var(--primary-dark);
-    border: 1px solid var(--primary-darker);
     font-size: 1em;
 }
 
@@ -620,103 +616,134 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: silver;
 }
 
-.hide-on-sm {
-  display: none;
-}
-
-.wrapper > div:nth-child(1) {
-  display: none;
-}
-
-thead > tr:nth-child(1) {
-  display: none;
-}
-
-@media (min-width: 30em) {
-    #gallery-pics {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
+@media (min-width: 1px) {
     .bg-marker {
         background-color: red;
     }
 
-    .wrapper {
-        display: grid;
-        grid-template-columns: 1fr;
-    }  
-
-    .wrapper > div:nth-child(1) {
-        display: none;
+    #sidebar {
+    	display: none;
     }
 
-    header {
-        justify-content: flex-start;
+    h1 {
+        font-size: 2.4em;
     }
 
-    .hide-on-sm {
-      display: none;
+    h2 {
+        font-size: 1.7em;
+    }
+
+    #gallery-pics {
+        grid-template-columns: repeat(1, 1fr);
     }
 
 }
 
-@media (min-width: 50em) {
-    #gallery-pics {
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 560px) {
+    main > p {
+        display: flex;
+        margin: 4px 0;
     }
 
+    #create-btn {
+        text-align: center;
+        background-color: #fff;
+        color: #555;
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    thead>tr:nth-child(1) > th form input {
+        flex: 6;
+    }
+
+    thead>tr:nth-child(1) > th form button  {
+        flex: 1;
+        margin-right: 0 !important;
+    }
+
+    thead>tr:nth-child(1) > th > div {
+        flex-direction: column-reverse !important;
+    }
+
+    thead>tr:nth-child(1) > th > div > div:nth-child(2) {
+        text-align: right;
+    }
+
+    thead>tr:nth-child(1) > th > div > div {
+        margin: 3px 0;
+    }
+
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    #comment-modal > div.modal-body > p:nth-child(2),
+    #delete-modal > div.modal-body > form > p:nth-child(3) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@media (min-width: 560px) {
     .bg-marker {
         background-color: orange;
     }
 
-    thead > tr:nth-child(1) {
-      display: table-row;
+    #gallery-pics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .go-right {
+        float: right;
+        position: relative;
+        display: block;
     }
 
 }
 
-@media (min-width: 70em) {
-    #gallery-pics {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
+@media (min-width: 840px) {
     .bg-marker {
         background-color: yellow;
     }
 
-    .wrapper {
-        display: grid;
-        grid-template-columns: 2fr 10fr;
-        grid-gap: 0;
-    }  
-
-    .wrapper > div:nth-child(1) {
-        display: block;
-        background-color: #eee;
-        min-width: 250px;
-        min-height: 98vh;
-    }
-
-    header {
-      justify-content: space-between;
-    }
-
-    .hide-on-sm {
-      display: block;
-    }
-
-    .hide-on-lg {
+    .hide-lg {
       display: none;
     }
 
-}
-
-@media (min-width: 90em) {
-    #gallery-pics {
-        grid-template-columns: repeat(4, 1fr);
+    h1 .hide-sm {
+        display: inline-block;
     }
 
+    .hide-sm {
+      display: block;
+    }
+
+    #sidebar {
+    	display: block;
+        background-color: #eee;
+        min-width: 250px;
+    }
+
+    h1 {
+        font-size: 4em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    #gallery-pics {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1120px) {
     .bg-marker {
         background-color: green;
+    }
+
+    #gallery-pics {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

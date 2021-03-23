@@ -79,6 +79,12 @@ label span {
     color: green;
 }
 
+.button {
+    text-align: center;
+    width: auto !important;
+    display: inline-block;
+}
+
 button, .button {
     background-color: var(--primary);
     border: 1px solid var(--primary-dark);
@@ -270,7 +276,8 @@ hr {
 }
 
 .modal {
-    width: 570px;
+    width: 90%;
+    max-width: 570px;
     z-index: -4;
     background-color: white;
     opacity: 0;
@@ -336,5 +343,6 @@ hr {
 @media screen and (max-width: 550px) {
   button, .button {
     width: 100%;
+    display: block;
   }
 }

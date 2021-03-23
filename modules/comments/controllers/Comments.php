@@ -3,9 +3,9 @@ class Comments extends Trongate {
 
     function _pre_insert($input) {
         //establish user_id, date_created and code before doing an insert
-        $this->module('tg_tokens');
+        $this->module('trongate_tokens');
         $token = $input['token'];
-        $user = $this->tg_tokens->_fetch_token_obj($token);
+        $user = $this->trongate_tokens->_fetch_token_obj($token);
 
         $input['params']['user_id'] = $user->user_id;
         $input['params']['date_created'] = time();
@@ -56,8 +56,8 @@ class Comments extends Trongate {
         $data['update_id'] = $decoded['update_id'];
         $data['date_created'] = time();
 
-        $this->module('tg_tokens');
-        $token_obj = $this->tg_tokens->_fetch_token_obj($token);
+        $this->module('trongate_tokens');
+        $token_obj = $this->trongate_tokens->_fetch_token_obj($token);
 
         if ($token_obj == false) {
             die(); //invalid token
@@ -92,11 +92,11 @@ class Comments extends Trongate {
 
     function _refresh_token($old_token) {
         //generate a new token string
-        $this->module('tg_tokens');
+        $this->module('trongate_tokens');
         $data['old_token'] = $old_token;
-        $data['token'] = $this->tg_tokens->_generate_rand_str();
+        $data['token'] = $this->trongate_tokens->_generate_rand_str();
         $data['expiry_date'] = $this->_calc_expiry_date();
-        $sql = 'update tg_tokens set token = :token, expiry_date = :expiry_date where token = :old_token';
+        $sql = 'update trongate_tokens set token = :token, expiry_date = :expiry_date where token = :old_token';
         $this->model->query_bind($sql, $data);
         return $data['token'];
     }
@@ -118,8 +118,8 @@ class Comments extends Trongate {
         $decoded = json_decode($post, true);
         $token = $decoded['token'];
         
-        $this->module('tg_tokens');
-        $token_obj = $this->tg_tokens->_fetch_token_obj($token);
+        $this->module('trongate_tokens');
+        $token_obj = $this->trongate_tokens->_fetch_token_obj($token);
 
         if ($token_obj == false) {
             die(); //invalid token

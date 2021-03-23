@@ -11,8 +11,8 @@
                 <input type="text" name="car_make" value="<?= $car_make ?>" autocomplete="off" placeholder="Enter Car Make">
             </p>
             <p>
-                <a href="<?= $cancel_url ?>" class="button alt">Cancel</a>
                 <button type="submit" name="submit" value="Submit">Submit</button>
+                <?= anchor($cancel_url, 'Cancel', array('class' => 'button alt')) ?>
             </p>
         </form>
     </div>

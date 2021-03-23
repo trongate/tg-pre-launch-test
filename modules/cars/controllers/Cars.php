@@ -5,8 +5,8 @@ class Cars extends Trongate {
     private $per_page_options = array(10, 20, 50, 100);
 
     function create() {
-        $this->module('tg_security');
-        $this->tg_security->_make_sure_allowed();
+        $this->module('trongate_security');
+        $this->trongate_security->_make_sure_allowed();
 
         $update_id = segment(3);
         $submit = input('submit');
@@ -31,8 +31,8 @@ class Cars extends Trongate {
     }
 
     function manage() {
-        $this->module('tg_security');
-        $this->tg_security->_make_sure_allowed();
+        $this->module('trongate_security');
+        $this->trongate_security->_make_sure_allowed();
 
         if (segment(4) !== '') {
             $data['headline'] = 'Search Results';
@@ -64,8 +64,8 @@ class Cars extends Trongate {
     }
 
     function show() {
-        $this->module('tg_security');
-        $token = $this->tg_security->_make_sure_allowed();
+        $this->module('trongate_security');
+        $token = $this->trongate_security->_make_sure_allowed();
         $update_id = segment(3);
 
         if ((!is_numeric($update_id)) && ($update_id != '')) {
@@ -104,8 +104,8 @@ class Cars extends Trongate {
     }
 
     function submit() {
-        $this->module('tg_security');
-        $this->tg_security->_make_sure_allowed();
+        $this->module('trongate_security');
+        $this->trongate_security->_make_sure_allowed();
 
         $submit = input('submit', true);
 
@@ -143,15 +143,15 @@ class Cars extends Trongate {
     }
 
     function submit_delete() {
-        $this->module('tg_security');
-        $this->tg_security->_make_sure_allowed();
+        $this->module('trongate_security');
+        $this->trongate_security->_make_sure_allowed();
 
         $submit = input('submit');
         $params['update_id'] = segment(3);
 
-        if (($submit == 'Submit') && (is_numeric($params['update_id']))) {
+        if (($submit == 'Yes - Delete Now') && (is_numeric($params['update_id']))) {
             //delete all of the comments associated with this record
-            $sql = 'delete from tg_comments where target_table = :module and update_id = :update_id';
+            $sql = 'delete from trongate_comments where target_table = :module and update_id = :update_id';
             $params['module'] = 'cars';
             $this->model->query_bind($sql, $params);
 
@@ -204,8 +204,8 @@ class Cars extends Trongate {
     }
 
     function set_per_page($selected_index) {
-        $this->module('tg_security');
-        $this->tg_security->_make_sure_allowed();
+        $this->module('trongate_security');
+        $this->trongate_security->_make_sure_allowed();
 
         if (!is_numeric($selected_index)) {
             $selected_index = $this->per_page_options[1];

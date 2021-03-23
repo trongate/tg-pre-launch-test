@@ -7,49 +7,52 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>css/trongate.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>css/admin.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>css/trongate-datetime.css">
-    <link rel="stylesheet" href="<?= THEME_DIR ?>css/admin.css"> 
+    <link rel="stylesheet" href="<?= THEME_DIR ?>css/admin.css">
     <?= $additional_includes_top ?>
     <title>Admin</title>
 </head>
 <body>
-<header>
-    <nav class="hide-on-sm">
-        <ul>
-            <li><?= anchor('#', 'Logo') ?></li>
-            <li><?= anchor('#', 'About') ?></li>
-            <li><?= anchor('#', 'Values') ?></li>
-            <li><?= anchor('#', 'News') ?></li>
-            <li><?= anchor('#', 'Contact') ?></li>
-            <li><?= anchor('#', 'Clients') ?></li>
-            <li><?= anchor('#', 'Partners') ?></li>
-        </ul>        
-    </nav>
-    <div class="hide-on-sm"><?= anchor('#', 'Admin Users') ?></div>
-    <div id="hamburger" class="hide-on-lg" onclick="openSideNav()">&#9776;</div>
-</header>
-<div class="wrapper">
-    <div id="sidebar">
-        <h3>Menu</h3>
-        <nav id="left-nav">
-            <?= Template::partial('partials/admin/dynamic_nav') ?>
-        </nav>       
-    </div>
-    <div>
-        <main><?= Template::display($data) ?></main>
-        <footer>
-            <div>Footer</div>
-            <div>Powered by <?= anchor('https://trongate.io', 'Trongate') ?></div>
-        </footer>
-    </div>
-</div>
-<div id="side-nav">
-    <div id="close-btn" onclick="closeSideNav()">&times;</div>
-    <ul>
-        <li><a href="https://speedcodingacademy.com/">Home</a></li>
-        <li><a href="https://speedcodingacademy.com/contactus">Get In Touch</a></li>
-        <li><a href="https://speedcodingacademy.com/members/login">Members' Login</a></li>
-    </ul>
-</div>
+	<header>	
+	    <nav class="hide-sm">
+	        <ul>
+	            <li><?= anchor('#', 'Logo') ?></li>
+	            <li><?= anchor('#', 'About') ?></li>
+	            <li><?= anchor('#', 'Values') ?></li>
+	            <li><?= anchor('#', 'News') ?></li>
+	            <li><?= anchor('#', 'Contact') ?></li>
+	            <li><?= anchor('#', 'Clients') ?></li>
+	            <li><?= anchor('#', 'Partners') ?></li>
+	        </ul>        
+	    </nav>
+	    <div id="hamburger" class="hide-lg" onclick="openSlideNav()">&#9776;</div>
+	    <div>
+	    	<?php 
+	    	echo anchor('trongate_administrators/manage', '<i class="fa fa-gears"></i>'); 
+	    	echo anchor('trongate_administrators/account', '<i class="fa fa-user"></i>'); 
+	    	echo anchor('trongate_administrators/logout', '<i class="fa fa-sign-out"></i>'); 
+	    	?>	
+	    </div>
+	</header>
+	<div class="wrapper">
+	    <div id="sidebar">
+	        <h3>Menu</h3>
+	        <nav id="left-nav">
+	            <?= Template::partial('partials/admin/dynamic_nav') ?>
+	        </nav>       
+	    </div>
+	    <div>
+	        <main>
+	        	<?= Template::display($data) ?></main>
+	        <footer>
+	            <div>Footer</div>
+	            <div>Powered by <?= anchor('https://trongate.io', 'Trongate') ?></div>
+	        </footer>
+	    </div>	
+	</div>
+	<div id="slide-nav">
+	    <div id="close-btn" onclick="closeSlideNav()">&times;</div>
+	    <ul auto-populate="true"></ul>
+	</div>
 <script src="<?= BASE_URL ?>js/admin.js"></script>
 <script src="<?= BASE_URL ?>js/trongate-datetime.js"></script>
 <?= $additional_includes_btm ?>

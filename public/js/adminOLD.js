@@ -101,6 +101,119 @@ function closeModal() {
     overlay.remove();
 }
 
+var pathArray = window.location.pathname.split( '/' );
+var segment3 = pathArray[3];
+
+if (segment3 == 'show') {
+    ////SHOW FILE JS START
+
+    var viewBtn = document.getElementById("view-all-btn");
+    var viewBtnContent = '<i class="fa fa-list-alt"></i> ' + viewBtn.innerHTML;
+    viewBtn.innerHTML = viewBtnContent;
+
+    var updateBtn = document.getElementById("update-btn");
+    var updateBtnContent = '<i class="fa fa-pencil"></i> ' + updateBtn.innerHTML;
+    updateBtn.innerHTML = updateBtnContent;
+
+    var deleteBtn = document.getElementById("delete-btn");
+    var deleteBtnContent = '<i class="fa fa-trash"></i> ' + deleteBtn.innerHTML;
+    deleteBtn.innerHTML = deleteBtnContent;
+
+    var updateBtn = document.getElementById("comment-btn");
+    var updateBtnContent = '<i class="fa fa-commenting-o"></i> ' + updateBtn.innerHTML;
+    updateBtn.innerHTML = updateBtnContent;
+
+    var commentsBlock = document.getElementById("comments-block");
+    var commentsTbl = document.querySelector("#comments-block > table");
+
+    function submitComment() {
+        var textarea = document.querySelector("#comment-modal > div.modal-body > p:nth-child(1) > textarea");
+        var comment = textarea.value.trim();
+        
+        if (comment == "") {
+            return;
+        } else {
+            textarea.value = '';
+            closeModal();
+
+            var params = {
+                comment,
+                target_table: segment1,
+                update_id: updateId
+            }
+
+            var targetUrl = baseUrl + 'api/create/tg_comments';
+            const http = new XMLHttpRequest();
+            http.open('post', targetUrl);
+            http.setRequestHeader('Content-type', 'application/json');
+            http.setRequestHeader('trongateToken', token);
+            http.send(JSON.stringify(params));
+
+            http.onload = function() {
+
+                if (http.status == 401) {
+                    //invalid token!
+                    window.location.href = baseUrl + 'tg_administrators/login';
+                } else if(http.status == 200) {
+                    fetchComments();
+                }
+
+            }
+
+        }
+
+    }
+
+    function fetchComments() {
+
+        var params = {
+            target_table: segment1,
+            update_id: updateId,
+            orderBy: 'date_created'
+        }
+
+        var targetUrl = baseUrl + 'api/get/tg_comments';
+        const http = new XMLHttpRequest();
+        http.open('post', targetUrl);
+        http.setRequestHeader('Content-type', 'application/json');
+        http.setRequestHeader('trongateToken', token);
+        http.send(JSON.stringify(params));
+
+        http.onload = function() {
+            if (http.status == 401) {
+                //invalid token!
+                window.location.href = baseUrl + 'tg_administrators/login';
+            } else if(http.status == 200) {
+
+                while (commentsTbl.firstChild) {
+                    commentsTbl.removeChild(commentsTbl.lastChild);
+                }
+
+                var comments = JSON.parse(http.responseText);
+                for (var i = 0; i < comments.length; i++) {
+                    var tblRow = document.createElement("tr");
+                    var tblCell = document.createElement("td");
+                    var pDate = document.createElement("p");
+                    var pText = document.createTextNode(comments[i]['date_created']);
+                    pDate.appendChild(pText);
+                    var pComment = document.createElement("p");
+                    var commentText = comments[i]['comment'];
+                    pComment.innerHTML = commentText;
+
+                    tblCell.appendChild(pDate);
+                    tblCell.appendChild(pComment);
+                    tblRow.appendChild(tblCell);
+                    commentsTbl.appendChild(tblRow);
+                    commentsBlock.appendChild(commentsTbl);
+                }
+            }
+        }
+    }
+
+    fetchComments();
+    ////SHOW FILE JS END
+}
+
 function fetchAssociatedRecords(relationName, updateId) {
 
     var params = {
@@ -260,132 +373,28 @@ function submitCreateAssociation(relationName) {
     }
 }
 
-if (typeof drawComments == 'boolean') {
-    var commentsBlock = document.getElementById("comments-block");
-    var commentsTbl = document.querySelector("#comments-block > table");
-
-    function submitComment() {
-        var textarea = document.querySelector("#comment-modal > div.modal-body > p:nth-child(1) > textarea");
-        var comment = textarea.value.trim();
-        
-        if (comment == "") {
-            return;
-        } else {
-            textarea.value = '';
-            closeModal();
-
-            var params = {
-                comment,
-                target_table: segment1,
-                update_id: updateId
-            }
-
-            var targetUrl = baseUrl + 'api/create/trongate_comments';
-            const http = new XMLHttpRequest();
-            http.open('post', targetUrl);
-            http.setRequestHeader('Content-type', 'application/json');
-            http.setRequestHeader('trongateToken', token);
-            http.send(JSON.stringify(params));
-
-            http.onload = function() {
-
-                if (http.status == 401) {
-                    //invalid token!
-                    window.location.href = baseUrl + 'trongate_administrators/login';
-                } else if(http.status == 200) {
-                    fetchComments();
-                }
-
-            }
-
-        }
-
-    }
-
-    function fetchComments() {
-
-        var params = {
-            target_table: segment1,
-            update_id: updateId,
-            orderBy: 'date_created'
-        }
-
-        var targetUrl = baseUrl + 'api/get/trongate_comments';
-        const http = new XMLHttpRequest();
-        http.open('post', targetUrl);
-        http.setRequestHeader('Content-type', 'application/json');
-        http.setRequestHeader('trongateToken', token);
-        http.send(JSON.stringify(params));
-
-        http.onload = function() {
-            if (http.status == 401) {
-                //invalid token!
-                window.location.href = baseUrl + 'trongate_administrators/login';
-            } else if(http.status == 200) {
-
-                while (commentsTbl.firstChild) {
-                    commentsTbl.removeChild(commentsTbl.lastChild);
-                }
-
-                var comments = JSON.parse(http.responseText);
-                for (var i = 0; i < comments.length; i++) {
-                    var tblRow = document.createElement("tr");
-                    var tblCell = document.createElement("td");
-                    var pDate = document.createElement("p");
-                    var pText = document.createTextNode(comments[i]['date_created']);
-                    pDate.appendChild(pText);
-                    var pComment = document.createElement("p");
-                    var commentText = comments[i]['comment'];
-                    pComment.innerHTML = commentText;
-
-                    tblCell.appendChild(pDate);
-                    tblCell.appendChild(pComment);
-                    tblRow.appendChild(tblCell);
-                    commentsTbl.appendChild(tblRow);
-                    commentsBlock.appendChild(commentsTbl);
-                }
-            }
-        }
-    }
-
-    fetchComments();
-}
 
 
-var slideNavOpen = false;
-var slideNav = document.getElementById('slide-nav');
+var sideNavOpen = false;
+var sideNav = document.getElementById('side-nav');
 var main = document.getElementsByTagName('main')[0];
 
-function openSlideNav() {
-    slideNav.style.opacity = 1;
-    slideNav.style.width = '250px';
-    slideNav.style.zIndex = 2;
-    setTimeout(() => {
-        slideNavOpen = true;
-    }, 500);
-    
+function openSideNav() {
+    sideNav.style.opacity = 1;
+    sideNav.style.width = '250px';
+    sideNav.style.zIndex = 2;
+    sideNavOpen = true;
 }
 
-function closeSlideNav() {
-    slideNav.style.opacity = 0;
-    slideNav.style.width = '0';
-    slideNav.style.zIndex = -1;
-    slideNavOpen = false;
+function closeSideNav() {
+    sideNav.style.opacity = 0;
+    sideNav.style.width = '0';
+    sideNav.style.zIndex = -1;
+    sideNavOpen = false;
 }
 
-var slideNavLinks = document.querySelector("#slide-nav ul");
-var autoPopulateSlideNav = slideNavLinks.getAttribute("auto-populate");
-if (autoPopulateSlideNav == "true") {
-    var leftNavLinks = document.querySelector("#left-nav ul");
-    slideNavLinks.innerHTML = leftNavLinks.innerHTML;
-}
-
-body.addEventListener('click', (ev) => {
-    if ((slideNavOpen == true) && (ev.target.id !== 'open-btn')) {
-        if (slideNav.contains(ev.target)) {
-            return true;
-        } else {
-            closeSlideNav();
-        }
+main.addEventListener('click', (ev) => {
+    if ((sideNavOpen == true) && (ev.target.id !== 'open-btn')) {
+        closeSideNav();
     }
 });
