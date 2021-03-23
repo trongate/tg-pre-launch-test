@@ -1,5 +1,5 @@
 <?php
-class Tg_tokens extends Trongate {
+class Trongate_tokens extends Trongate {
 
     /*
      * This a utility class that can assist you with things like securing API endpoints

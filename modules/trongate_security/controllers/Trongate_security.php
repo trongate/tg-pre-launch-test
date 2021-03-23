@@ -1,31 +1,6 @@
 <?php
 class Trongate_security extends Trongate {
 
-    // function test() {
-    //     $target_dir = APPPATH.'modules/txg_security';
-
-    //     if (is_dir($target_dir)) {
-    //         $this->recurseRmdir($target_dir);
-    //     }
-    //     echo 'done';
-    // }
-
-// function test() {
-
-//     $target_dir = APPPATH.'modules/txg_administrators';
-//     $new_name = str_replace('txg_admin', 'trongate_admin', $target_dir);
-//     rename($target_dir,$new_name);
-//     echo 'renamed';
-// }
-
-function recurseRmdir($dir) {
-  $files = array_diff(scandir($dir), array('.','..'));
-  foreach ($files as $file) {
-    (is_dir("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
-  }
-  return rmdir($dir);
-}
-
     function _make_sure_allowed($scenario='admin panel') {
         //returns EITHER (trongate)token OR initialises 'not allowed' procedure
 
