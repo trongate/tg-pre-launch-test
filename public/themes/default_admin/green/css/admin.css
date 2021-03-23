@@ -96,8 +96,7 @@ input[type=range]::-moz-range-track {
 
 #slide-nav {
   background-color: var(--primary-darker);
--webkit-box-shadow: 10px 0px 5px -4px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 0px 5px -4px rgba(0,0,0,0.75);
-box-shadow: 10px 0px 5px -4px rgba(0,0,0,0.75);
-
+  -webkit-box-shadow: 10px 0px 5px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 0px 5px -4px rgba(0,0,0,0.75);
+  box-shadow: 10px 0px 5px -4px rgba(0,0,0,0.75);
 }
