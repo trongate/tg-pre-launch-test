@@ -49,19 +49,12 @@ class Trongate_administrators extends Trongate {
                 $data['password'] = $this->_hash_string($data['password']);
 
                 if (is_numeric($update_id)) {
-                    $this->model->update($update_id, $$data);
+                    $this->model->update($update_id, $data);
                     set_flashdata('The record was successfully updated');
                 } else {
-
-                    //create a new trongate_users record 
+                    //create new trongate_administrators/users records 
                     $this->module('trongate_users');
-                    $params['code'] = make_rand_str(32);
-                    $params['user_level_id'] = 1;
-
-echo 'cool'; die();
-
-                    $data['trongate_user_id'] = $this->model->insert($params, 'trongate_users');
-echo 'yes'; die();
+                    $data['trongate_user_id'] = $this->trongate_users->_create_user(1);
                     $this->model->insert($data);
                     set_flashdata('The record was successfully created');
                 }
@@ -83,10 +76,10 @@ echo 'yes'; die();
 
         if (($submit == 'Delete Record Now') && (is_numeric($update_id))) {
             //get the trongate_user_id 
-            $user_obj = $this->model->get_where($update_id, 'trongate_users');
+            $user_obj = $this->model->get_where($update_id, 'trongate_administrators');
             $trongate_user_id = $user_obj->trongate_user_id;
             $this->model->delete($trongate_user_id, 'trongate_users');
-            $this->model->delete($update_id, 'trongate_users');
+            $this->model->delete($update_id, 'trongate_administrators');
             set_flashdata('The record was successfully deleted');
         }
 
@@ -156,7 +149,7 @@ echo 'yes'; die();
             $data['form_location'] = str_replace('/conf_delete', '/submit_delete', current_url());
             $data['view_module'] = 'trongate_administrators';
             $data['view_file'] = 'conf_delete';
-            $this->template('trongate_administrators', $data);
+            $this->load_template($data);
         }
     }
 

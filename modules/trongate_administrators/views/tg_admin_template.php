@@ -144,6 +144,19 @@ table button {
 	}
 }
 
+@media (max-width: 550px) {
+	.float-right-lg {
+		width: 100% !important;
+	}
+}
+
+@media (min-width: 551px) {
+	.float-right-lg {
+		float: right;
+		position: relative;
+	}
+}
+
 @media (max-width: 839px) {
 
 	#top-gutter {
