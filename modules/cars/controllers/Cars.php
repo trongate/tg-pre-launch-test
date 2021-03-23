@@ -149,7 +149,7 @@ class Cars extends Trongate {
         $submit = input('submit');
         $params['update_id'] = segment(3);
 
-        if (($submit == 'Submit') && (is_numeric($params['update_id']))) {
+        if (($submit == 'Yes - Delete Now') && (is_numeric($params['update_id']))) {
             //delete all of the comments associated with this record
             $sql = 'delete from trongate_comments where target_table = :module and update_id = :update_id';
             $params['module'] = 'cars';

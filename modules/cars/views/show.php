@@ -79,4 +79,6 @@
 var token = '<?= $token ?>';
 var updateId = '<?= $update_id ?>';
 var baseUrl = '<?= BASE_URL ?>';
+var segment1 = '<?= segment(1) ?>';
+var drawComments = true;
 </script>

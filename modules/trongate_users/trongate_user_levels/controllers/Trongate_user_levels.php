@@ -1,5 +1,5 @@
 <?php
-class Tg_user_levels extends Trongate {
+class Trongate_user_levels extends Trongate {
 
     function __construct() {
         parent::__construct();
