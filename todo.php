@@ -1,33 +1,12 @@
-
+7). Upload to Github and get the code generator generating this thing.  
 --------------------------------------
 4). Ditch tg_  and replace with trongate_  
 5). Sort out dashboard link (get it on the left and lose the underlines)
 -------------------------------------- 
 6). Get all of the different theme colours working. 
 --------------------------------------  END OF SATURDAY TARGET
-7). Upload to Github and get the code generator generating this thing.  
 
 
-
-        $attr = array( 
-            "btn1" => array (
-                "class" => ,
-                "maths" => 30,   
-                "chemistry" => 39
-            ),
-
-            "qadir" => array (
-                "physics" => 30,
-                "maths" => 32,
-                "chemistry" => 29
-            ),
-
-            "zara" => array (
-                "physics" => 31,
-                "maths" => 22,
-                "chemistry" => 39
-            )
-        );
 
 
 
