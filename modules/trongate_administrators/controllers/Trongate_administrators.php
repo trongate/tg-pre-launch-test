@@ -3,7 +3,7 @@ class Trongate_administrators extends Trongate {
 
     //NOTE: the default username and password is 'admin' and 'admin'
 
-    private $dashboard_home = 'cars/manage'; //where to go after login
+    private $dashboard_home = 'tg-admin'; //where to go after login
 
     function login() {
         $data['username'] = input('username');
