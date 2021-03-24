@@ -77,8 +77,7 @@ h5 { font-size: 1.2em; }
 }
 
 #top-gutter a:hover {
-	color: #fff;
-	text-decoration: underline;
+	color: cyan;
 }
 
 .container {

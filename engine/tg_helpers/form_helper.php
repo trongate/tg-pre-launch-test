@@ -73,6 +73,10 @@ function form_input($name, $value=NULL, $attributes=NULL, $additional_code=NULL)
         $value = '';
     }
 
+    if ((defined('AUTOCOMPLETE')) && (!isset($attributes['autocomplete']))) {
+        $attributes['autocomplete'] = AUTOCOMPLETE;
+    }
+
     if (isset($attributes)) {
         $extra = get_attributes_str($attributes);
     }

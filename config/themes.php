@@ -1,6 +1,6 @@
 <?php
 $admin_theme = [
-    "dir" => "default_admin/blue",
+    "dir" => "default_admin/green",
     "template" => "admin.php",
 ];
 

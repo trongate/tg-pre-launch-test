@@ -1,12 +1,3 @@
-7). Upload to Github and get the code generator generating this thing.  
---------------------------------------
-4). Ditch tg_  and replace with trongate_  
-5). Sort out dashboard link (get it on the left and lose the underlines)
--------------------------------------- 
-6). Get all of the different theme colours working. 
---------------------------------------  END OF SATURDAY TARGET
-
-
 *******************************************************
 *******************************************************
 *******************************************************
