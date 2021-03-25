@@ -67,17 +67,17 @@ function openModal(modalId) {
     
     body.prepend(overlay);
 
-    var commentModal = _(modalId);
-    commentModalContent = commentModal.innerHTML;
-    commentModal.remove();
+    var targetModal = _(modalId);
+    targetModalContent = targetModal.innerHTML;
+    targetModal.remove();
 
-    //create a new comment model
+    //create a new model
     var newModal = document.createElement("div");
     newModal.setAttribute("class", "modal");
     newModal.setAttribute("id", modalId);
 
     newModal.style.zIndex = 4;
-    newModal.innerHTML = commentModalContent;
+    newModal.innerHTML = targetModalContent;
     modalContainer.appendChild(newModal);
 
     setTimeout(() => {
@@ -346,6 +346,74 @@ if (typeof drawComments == 'boolean') {
                 }
             }
         }
+    }
+
+    function openPicPreview(modalId, picPath) {
+        openModal(modalId);
+        var targetEl = document.getElementById('preview-pic');
+        while (targetEl.firstChild) {
+            targetEl.removeChild(targetEl.lastChild);
+        }
+
+        var imgPreview = document.createElement('img');
+        imgPreview.setAttribute("src", picPath);
+        targetEl.appendChild(imgPreview);
+
+        var ditchPicBtn = document.getElementById('ditch-pic-btn');
+        var ditchPicBtnText = ditchPicBtn.innerHTML;
+        var iconCode = '<i class="fa fa-trash"></i>';
+        ditchPicBtn.innerHTML = ditchPicBtnText.replace(iconCode, '');
+        ditchPicBtn.innerHTML = iconCode + ditchPicBtn.innerHTML;
+    }
+
+    function ditchPreviewPic() {
+        var el = document.querySelector("div.user-panel.main input[name='login']");
+        var previewPic =  document.querySelector('#preview-pic img');
+        var picPath = previewPic.src;
+        var removePicUrl = baseUrl + 'trongate_filezone/upload/' + segment1 + '/' + updateId;
+        
+        const http = new XMLHttpRequest();
+        http.open('DELETE', removePicUrl);
+        http.setRequestHeader('Content-type', 'application/json');
+        http.setRequestHeader('trongateToken', token);
+        http.send(picPath);
+        http.onload = function() {
+            refreshPictures(http.responseText);
+        }
+        closeModal();
+    }
+
+    function refreshPictures(pictures) {
+        var pics = JSON.parse(pictures);
+        var galleryPicsGrid = document.getElementById('gallery-pics');
+        while (galleryPicsGrid.firstChild) {
+            galleryPicsGrid.removeChild(galleryPicsGrid.lastChild);
+        }
+
+        if (pics.length<1) {
+            var para = document.createElement('p');
+            para.setAttribute('class', 'text-center');
+            var paraTxt = 'There are currently no gallery pictures for this record.';
+            var picsInfo = document.createTextNode(paraTxt);
+            para.appendChild(picsInfo);
+            galleryPicsGrid.appendChild(para);
+            galleryPicsGrid.style.gridTemplateColumns = 'repeat(1, 1fr)';
+
+        } else {
+            galleryPicsGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+            var targetDirectory = baseUrl + segment1 + '_pictures/' + updateId + '/';
+            for (var i = 0; i < pics.length; i++) {
+                var picPath = targetDirectory + pics[i];
+                var newDiv = document.createElement('div');
+                newDiv.setAttribute('onclick', 'openPicPreview(\'preview-pic-modal\', \'' + picPath + '\')');
+                var thumb = document.createElement('img');
+                thumb.setAttribute('src', picPath);
+                newDiv.appendChild(thumb);
+                galleryPicsGrid.appendChild(newDiv);
+            }
+
+        }
+
     }
 
     fetchComments();
