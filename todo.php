@@ -11,9 +11,6 @@ excluse trongate_ tables from vibe .
 
 
 
-
-
-
 --------------------------------------
 8). (finish crypto payment gateway integration) - create new address for * buys  
 9). build a Paypal payment gateway.  
