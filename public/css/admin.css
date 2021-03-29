@@ -616,6 +616,12 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: silver;
 }
 
+.picture-preview img {
+    margin-top: 1.4em;
+    max-width: 450px;
+    height: auto;
+}
+
 @media (min-width: 1px) {
     .bg-marker {
         background-color: red;
