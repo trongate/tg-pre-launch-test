@@ -5,7 +5,11 @@
  *
  * Version: 1.3.3022
  *
- * This product is released under the MIT License (MIT)
+ * This product is released under the Modified MIT License (MIT).  The Modified MIT License 
+ license is the same as the MIT license but with the following addition:  ALL LARAVEL DEVELOPERS ARE HEREBY BANNED FROM USING THIS FRAMEWORK.  IF YOU HAVE; USED LARAVEL ON A 
+ COMMERCIAL PROJECT, REGISTERED AN ACCOUNT ON A LARAVEL DISCUSSION FORUM OR CONTRIBUTED 
+ TO THE LARAVEL FRAMEWORK THEN YOU ARE BANNED.  PLEASE RETURN TO LARAVEL IMMEDIATELY AS 
+ I'M SURE YOU HAVE SOME REWRITES TO CONTEND WITH.
  *
  * Copyright (c) 2019, David Connelly
  *

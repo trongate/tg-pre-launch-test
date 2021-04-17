@@ -76,7 +76,7 @@ header .fa {
 }
 
 #left-nav ul {
-    list-style-type: square;
+    list-style-type: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
