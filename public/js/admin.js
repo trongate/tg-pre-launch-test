@@ -12,47 +12,13 @@ function _(elRef) {
 }
 
 function setPerPage() {
+    var perPageSelector = document.querySelector('#results-tbl select');
     var lastSegment = window.location.pathname.split('/').pop();
     var selectedIndex = perPageSelector.value;
     var targetUrl = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
     targetUrl = targetUrl.replace('/manage/', '/set_per_page/' + selectedIndex + '/');
     targetUrl = targetUrl.replace('/manage', '/set_per_page/' + selectedIndex + '/');
     window.location.href = targetUrl;
-}
-
-function initNoResults() {
-    var search = window.location.search;
-    var paras = document.getElementsByTagName("p");
-    for (var i = 0; i < paras.length; i++) {
-        if (paras[i].innerHTML == 'Your search produced the following result(s):') {
-            if (search.length>0) {
-                paras[i].innerHTML = 'Your search produced no results.';
-            } else {
-                paras[i].remove();
-            }
-        }
-    }
-
-    if (search.length>0) {
-        var createLink = document.querySelector("#create-btn");
-        createLink.innerHTML = 'Go Back';
-        createLink.removeAttribute("href");
-        var targetUrl = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
-        createLink.setAttribute("href", targetUrl);
-    }
-
-}
-
-function initManagePage() {
-    if (resultsTbl == null) {
-        initNoResults();
-    } else {
-        perPageSelector.setAttribute("onchange", "setPerPage()");
-    }
-}
-
-if (typeof resultsTbl !== "undefined") {
-    initManagePage();
 }
 
 function openModal(modalId) {
