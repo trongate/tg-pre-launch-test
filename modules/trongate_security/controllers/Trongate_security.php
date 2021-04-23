@@ -41,7 +41,7 @@ class Trongate_security extends Trongate {
     function _is_token_valid($token, $return_id=false) {
         $params['token'] = $token;
         $params['nowtime'] = time();
-        $sql = 'select * from trongate_security_tokens where token = :token and expiry_date > :nowtime';
+        $sql = 'select * from trongate_tokens where token = :token and expiry_date > :nowtime';
         $rows = $this->model->query_bind($sql, $params, 'object');
 
         if (count($rows)!==1) {
