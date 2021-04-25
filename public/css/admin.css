@@ -195,7 +195,7 @@ th {
     text-transform: none;
 }
 
-#results-tbl > thead > tr:nth-child(2) > th:nth-child(2) {
+#results-tbl > thead > tr:last-child > th:last-child {
     width: 20px;
 }
 
