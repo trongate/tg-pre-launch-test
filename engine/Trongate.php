@@ -83,6 +83,12 @@ class Trongate {
             }
         }
 
+        if (!isset($child_module)) {
+            http_response_code(404);
+            echo 'ERROR: Unable to locate '.$target_module.' module!';
+            die();
+        }
+
         return $child_module;
     }
 
