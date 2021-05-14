@@ -6,7 +6,7 @@ class Trongate_administrators extends Trongate {
     private $dashboard_home = 'tg-admin'; //where to go after login
 
     function login() {
-        $data['username'] = input('username');
+        $data['username'] = post('username');
         $data['form_location'] = str_replace('/login', '/submit_login', current_url());
         $data['view_module'] = 'trongate_administrators';
         $data['view_file'] = 'login_form'; 
@@ -14,7 +14,7 @@ class Trongate_administrators extends Trongate {
     }
 
     function submit_login() {
-        $submit = input('submit'); 
+        $submit = post('submit'); 
 
         if ($submit == 'Submit') {
             $this->validation_helper->set_rules('username', 'username', 'required|callback_login_check');
@@ -22,7 +22,7 @@ class Trongate_administrators extends Trongate {
             $result = $this->validation_helper->run();
 
             if ($result == true) {
-                $this->_log_user_in(input('username'));
+                $this->_log_user_in(post('username'));
             } else {
                 $this->login();
             }
@@ -33,7 +33,7 @@ class Trongate_administrators extends Trongate {
 
     function submit() {
         $data['token'] = $this->_make_sure_allowed();
-        $submit = input('submit');
+        $submit = post('submit');
 
         if ($submit == 'Submit') {
             $this->validation_helper->set_rules('username', 'username', 'required|min_length[6]|callback_username_check');
@@ -72,7 +72,7 @@ class Trongate_administrators extends Trongate {
     function submit_delete() {
         $this->_make_sure_allowed();
         $update_id =  segment(3);
-        $submit = input('submit');
+        $submit = post('submit');
 
         if (($submit == 'Delete Record Now') && (is_numeric($update_id))) {
             //get the trongate_user_id 
@@ -109,7 +109,7 @@ class Trongate_administrators extends Trongate {
     function create() {
         $token = $this->_make_sure_allowed();
         $update_id = segment(3);
-        $submit = input('submit');
+        $submit = post('submit');
 
         if ((is_numeric($update_id)) && ($submit == '')) {
             $data = $this->_get_data_from_db($update_id);
@@ -229,9 +229,9 @@ class Trongate_administrators extends Trongate {
     }
 
     function _get_data_from_post() {
-        $data['username'] = input('username');
-        $data['password'] = input('password');
-        $data['repeat_password'] = input('repeat_password');
+        $data['username'] = post('username');
+        $data['password'] = post('password');
+        $data['repeat_password'] = post('repeat_password');
         return $data;
     }
 
@@ -240,7 +240,7 @@ class Trongate_administrators extends Trongate {
         $trongate_user_id = $user_obj->trongate_user_id;
         $token_data['user_id'] = $trongate_user_id;
 
-        $remember = input('remember');
+        $remember = post('remember');
         if (($remember === '1') || ($remember === 1)) {
             //set a cookie and remember for 30 days
             $token_data['expiry_date'] = time() + (86400*30);
@@ -309,7 +309,7 @@ class Trongate_administrators extends Trongate {
     }
 
     function login_check($submitted_username) {
-        $submitted_password = input('password');
+        $submitted_password = post('password');
         $error_msg = 'You did not enter a correct username and/or or password.';
     
         $result = $this->model->get_one_where('username', $submitted_username, 'trongate_administrators');

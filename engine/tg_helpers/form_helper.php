@@ -223,7 +223,7 @@ function form_file_select($name, $attributes=NULL, $additional_code=NULL) {
     return $html;
 }
 
-function input($field_name, $clean_up=NULL) {
+function post($field_name, $clean_up=NULL) {
     if (!isset($_POST[$field_name])) {
         $value = '';
     } else {

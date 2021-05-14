@@ -3,10 +3,9 @@
  *
  * An open source PHP framework for web developers who like to break the rules
  *
- * Version: 1.3.3022
+ * Version: 1.3.3023
  *
- * This product is released under the Modified MIT License (MMIT).  The Modified MIT License is the same as the MIT license but with the following addition:  ALL LARAVEL DEVELOPERS ARE HEREBY BANNED FROM USING THIS FRAMEWORK.  IF YOU HAVE; USED LARAVEL ON A 
- COMMERCIAL PROJECT, REGISTERED AN ACCOUNT ON A LARAVEL DISCUSSION FORUM, TYPED THE WORDS, "I love Laravel" ANYWHERE ON SOCIAL MEDIA OR CONTRIBUTED TO THE LARAVEL FRAMEWORK ON GITHUB THEN YOU ARE BANNED.  PLEASE RETURN TO LARAVEL IMMEDIATELY AS I'M SURE YOU HAVE SOME POINTLESS REWRITES TO CONTEND WITH.
+ * This product is released under the MIT License (MIT)
  *
  * Copyright (c) 2019, David Connelly
  *
@@ -28,7 +27,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @author  David Connelly (https://speedcodingacademy.com)
+ * @author  David Connelly (david.webguy@gmail.com)
  * @copyright   Copyright (c) 2019, David Connelly.
  * @license http://opensource.org/licenses/MIT  MIT License.
  * @link    https://trongate.io.
